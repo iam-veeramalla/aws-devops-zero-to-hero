@@ -65,21 +65,17 @@ This day emphasizes security best practices in AWS. You'll learn how to implemen
 
 By implementing this project, you'll gain hands-on experience in setting up a secure VPC with EC2 instances, implementing networking and routing, configuring security groups and IAM roles, and ensuring proper access control. This project will provide a practical understanding of how these AWS services work together to create a secure and scalable infrastructure for your applications.
 
-## Day 8: Amazon S3
+## Day 8: AWS Interview Questions on EC2, IAM and VPC
+
+## Day 9: Amazon S3
 
 This day focuses on Amazon S3, a scalable object storage service. You'll learn how to create S3 buckets, upload and download objects, and organize data using S3 features like versioning, lifecycle policies, and access control.
 
-## Day 9: AWS CloudFormation
+## Day 10: AWS CloudFormation
 
 This day introduces Infrastructure as Code (IaC) using AWS CloudFormation. You'll learn how to create CloudFormation templates to automate the provisioning of resources, manage stacks, and ensure consistent infrastructure across deployments.
 
 **Project:** You'll work on creating a CloudFormation template that provisions a fully configured application stack, including EC2 instances, networking components, and security groups.
-
-## Day 10: AWS Elastic Beanstalk
-
-You'll explore AWS Elastic Beanstalk, a fully managed service for deploying and scaling applications. You'll learn how to deploy applications using Elastic Beanstalk, configure environments, and manage deployments effortlessly.
-
-**Project:** You'll deploy a sample application with a custom environment and configuration using Elastic Beanstalk.
 
 ## Day 11: AWS CodeCommit
 
