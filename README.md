@@ -71,123 +71,125 @@ By implementing this project, you'll gain hands-on experience in setting up a se
 
 This day focuses on Amazon S3, a scalable object storage service. You'll learn how to create S3 buckets, upload and download objects, and organize data using S3 features like versioning, lifecycle policies, and access control.
 
-## Day 10: AWS CloudFormation
+## Day 10: AWS CLI
+
+## Day 11: AWS CloudFormation
 
 This day introduces Infrastructure as Code (IaC) using AWS CloudFormation. You'll learn how to create CloudFormation templates to automate the provisioning of resources, manage stacks, and ensure consistent infrastructure across deployments.
 
 **Project:** You'll work on creating a CloudFormation template that provisions a fully configured application stack, including EC2 instances, networking components, and security groups.
 
-## Day 11: AWS CodeCommit
+## Day 12: AWS CodeCommit
 
 This day focuses on AWS CodeCommit, a managed source control service. You'll learn how to set up a Git repository in CodeCommit, collaborate with team members, and manage version control of your codebase.
 
 **Project:** You'll configure a CodeCommit repository for a team project, including setting up access control and collaboration workflows.
 
-## Day 12: AWS CodePipeline
+## Day 13: AWS CodePipeline
 
 You'll dive into AWS CodePipeline, a fully managed continuous delivery service. You'll learn how to build end-to-end CI/CD pipelines by configuring source, build, and deployment stages, automating the entire software release process.
 
 **Project:** You'll create a CI/CD pipeline using CodePipeline for an application deployment, including source code integration, build, and automatic deployment to a target environment.
 
-## Day 13: AWS CodeBuild
+## Day 14: AWS CodeBuild
 
 This day focuses on AWS CodeBuild, a fully managed build service. You'll learn how to configure build projects in CodeBuild, define build specifications, and perform build and testing processes.
 
 **Project:** You'll configure and run CodeBuild for a project, including defining build specifications and integrating with other AWS services.
 
-## Day 14: AWS CodeDeploy
+## Day 15: AWS CodeDeploy
 
 You'll explore AWS CodeDeploy, a service for automating application deployments to various compute environments. You'll learn how to create deployment groups, configure deployment strategies, and perform automatic rollbacks if necessary.
 
 **Project:** You'll implement a Blue/Green deployment strategy for a sample application using CodeDeploy, ensuring zero-downtime deployments and easy rollback options.
 
-## Day 15: AWS CloudWatch
+## Day 16: AWS CloudWatch
 
 This day focuses on monitoring AWS resources using AWS CloudWatch. You'll learn how to create alarms, set up notifications, and collect metrics to gain insights into the health and performance of your applications and infrastructure.
 
 **Project:** You'll set up CloudWatch alarms for critical metrics of an application, define appropriate threshold conditions, and configure notification actions.
 
-## Day 16: AWS Lambda
+## Day 17: AWS Lambda
 
 This day introduces serverless computing with AWS Lambda. You'll learn how to create and deploy serverless functions, trigger them based on events, and leverage Lambda to build scalable and event-driven architectures.
 
-## Day 17: AWS CloudWatch Events and EventBridge
+## Day 18: AWS CloudWatch Events and EventBridge
 
 This day focuses on AWS CloudWatch Events and EventBridge, services for event-driven architectures. You'll learn how to create event rules, configure event targets, and build serverless event-driven workflows.
 
 **Project:** You'll build a serverless event-driven workflow using CloudWatch Events and EventBridge, demonstrating the integration and automation of different AWS services based on events.
 
-## Day 18: AWS CloudTrail and Config
+## Day 19: AWS CloudTrail and Config
 
 You'll explore AWS CloudTrail and AWS Config, which provide auditing and compliance capabilities. You'll learn how to track API calls using CloudTrail and ensure compliance with AWS Config rules.
 
 **Project:** You'll configure CloudTrail to log API activities and set up AWS Config rules to enforce compliance policies for your AWS resources.
 
-## Day 19: AWS DynamoDB
+## Day 20: AWS DynamoDB
 
 You'll explore AWS DynamoDB, a NoSQL database service. You'll learn how to create and manage DynamoDB tables, perform CRUD operations, and leverage DynamoDB's scalability and performance capabilities.
 
 **Project:** You'll build a serverless API using DynamoDB as the backend storage, allowing data retrieval and modification operations.
 
-## Day 20: AWS ECS (Elastic Container Service)
+## Day 21: AWS ECS (Elastic Container Service)
 
 This day focuses on AWS ECS, a fully managed container orchestration service. You'll learn how to run and manage containers using ECS, including creating task definitions, managing services, and scaling with auto-scaling capabilities.
 
 **Project:** You'll deploy a multi-container application using ECS, configure auto-scaling policies, and ensure high availability and efficient resource utilization.
 
-## Day 21: AWS ECR (Elastic Container Registry)
+## Day 22: AWS ECR (Elastic Container Registry)
 
 You'll explore AWS ECR, a fully managed container registry for storing and managing container images. You'll learn how to push and pull Docker images to and from ECR, enabling seamless integration with ECS and other container services.
 
 **Project:** You'll build a CI/CD pipeline that automatically builds, pushes, and deploys Docker images to ECR, ensuring streamlined container image management.
 
-## Day 22: AWS EKS (Elastic Kubernetes Service)
+## Day 23: AWS EKS (Elastic Kubernetes Service)
 
 This day introduces AWS EKS, a fully managed Kubernetes service. You'll learn how to deploy and manage Kubernetes clusters using EKS, including launching worker nodes, configuring networking, and deploying applications using Kubernetes manifests.
 
 **Project:** You'll deploy a sample application on EKS using Kubernetes manifests, demonstrating the capabilities of running containerized applications on a managed Kubernetes service.
 
-## Day 23: AWS CloudWatch Logs
+## Day 24: AWS CloudWatch Logs
 
 You'll explore AWS CloudWatch Logs, a service for collecting and analyzing log data. You'll learn how to configure log groups, streams, and filters to centralize log management and gain insights into application behavior and troubleshooting.
 
 **Project:** You'll set up CloudWatch Logs for a production application, configure log groups and streams, and create filters to extract relevant log data.
 
-## Day 24: AWS Secrets Manager
+## Day 25: AWS Secrets Manager
 
 This day focuses on AWS Secrets Manager, a service for storing and managing secrets such as database credentials, API keys, and other sensitive information. You'll learn how to store, retrieve, and rotate secrets securely in your applications.
 
 **Project:** You'll configure Secrets Manager to store and manage secrets, integrate secret retrieval in an application, and implement secret rotation policies.
 
-## Day 25: AWS Auto Scaling
+## Day 26: AWS Auto Scaling
 
 You'll dive into AWS Auto Scaling, a service for automatically adjusting the capacity of your AWS resources based on demand. You'll learn how to configure Auto Scaling groups, scaling policies, and scaling based on metrics.
 
 **Project:** You'll configure an Auto Scaling group for an application, define scaling policies based on metrics such as CPU utilization, and observe the dynamic scaling behavior.
 
-## Day 26: AWS RDS (Relational Database Service)
+## Day 27: AWS RDS (Relational Database Service)
 
 This day introduces AWS RDS, a managed database service for relational databases. You'll learn how to create and manage RDS instances, configure backups, snapshots, and replication to ensure high availability and data durability.
 
 **Project:** You'll provision an RDS instance, configure backups and snapshots, and test replication scenarios for a sample database.
 
-## Day 27: AWS Elastic Load Balancer
+## Day 28: AWS Elastic Load Balancer
 
 You'll explore AWS Elastic Load Balancer, a service for distributing incoming application traffic across multiple targets. You'll learn how to configure and manage load balancers to ensure high availability, fault tolerance, and scalability.
 
 **Project:** You'll configure an Elastic Load Balancer for an application, define target groups, and observe the load balancing behavior across instances.
 
-## Day 28: AWS Systems Manager
+## Day 29: AWS Systems Manager
 
 You'll explore AWS Systems Manager, a management service for AWS resources. You'll learn how to use Systems Manager to manage EC2 instances, perform patch management, automate administrative tasks, and configure resource compliance.
 
 **Project:** You'll leverage Systems Manager to manage EC2 instances, perform common administrative tasks, and ensure compliance with configuration policies.
 
-## Day 29: AWS Cloud Migration Strategies and Tools
+## Day 30: AWS Cloud Migration Strategies and Tools
 
 This day focuses on learning how to migrate applications to AWS cloud. What are the most popular strategies and tools used to achieve the cloud migration.
 
-## Day 30: AWS Best Practices and Job Preparation
+## Day 31: AWS Best Practices and Job Preparation
 
 On the final day, you'll review best practices for AWS services, including security, cost optimization and performance.
 
