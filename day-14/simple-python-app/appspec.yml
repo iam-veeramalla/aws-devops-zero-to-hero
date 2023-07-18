@@ -1,12 +1,12 @@
 version: 0.0
 os: linux
 
-resources:
-  - myDockerContainer:
-      type: AWS::EC2::Container
-      properties:
-        Image: docker.io/abhishekf5/simple-python-flask-app:latest
-        Memory: 256
-        PortMappings:
-          - ContainerPort: 8000
-            HostPort: 8000
+hooks:
+  ApplicationStop:
+    - location: scripts/stop_container.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: scripts/start_container.sh
+      timeout: 300
+      runas: root
