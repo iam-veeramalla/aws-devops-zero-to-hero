@@ -119,29 +119,29 @@ This day focuses on AWS CloudWatch Events and EventBridge, services for event-dr
 
 **Project:** You'll build a serverless event-driven workflow using CloudWatch Events and EventBridge, demonstrating the integration and automation of different AWS services based on events.
 
-## Day 19: AWS CloudTrail and Config
+## Day 19: AWS CloudFront
+
+ If you've never heard of CDN or CloudFront before, don't worry, we will start from scratch and gradually build up your understanding. By the end, you'll be well-versed in these technologies.
+
+**Project:** You'll configure a s3 bucket to host a static website and learn how to serve the requests to this website through CDN that is AWS Cloud Front.
+
+## Day 20: AWS CloudTrail and Config
 
 You'll explore AWS CloudTrail and AWS Config, which provide auditing and compliance capabilities. You'll learn how to track API calls using CloudTrail and ensure compliance with AWS Config rules.
 
 **Project:** You'll configure CloudTrail to log API activities and set up AWS Config rules to enforce compliance policies for your AWS resources.
 
-## Day 20: AWS DynamoDB
-
-You'll explore AWS DynamoDB, a NoSQL database service. You'll learn how to create and manage DynamoDB tables, perform CRUD operations, and leverage DynamoDB's scalability and performance capabilities.
-
-**Project:** You'll build a serverless API using DynamoDB as the backend storage, allowing data retrieval and modification operations.
-
-## Day 21: AWS ECS (Elastic Container Service)
-
-This day focuses on AWS ECS, a fully managed container orchestration service. You'll learn how to run and manage containers using ECS, including creating task definitions, managing services, and scaling with auto-scaling capabilities.
-
-**Project:** You'll deploy a multi-container application using ECS, configure auto-scaling policies, and ensure high availability and efficient resource utilization.
-
-## Day 22: AWS ECR (Elastic Container Registry)
+## Day 21: AWS ECR (Elastic Container Registry)
 
 You'll explore AWS ECR, a fully managed container registry for storing and managing container images. You'll learn how to push and pull Docker images to and from ECR, enabling seamless integration with ECS and other container services.
 
 **Project:** You'll build a CI/CD pipeline that automatically builds, pushes, and deploys Docker images to ECR, ensuring streamlined container image management.
+
+## Day 22: AWS ECS (Elastic Container Service)
+
+This day focuses on AWS ECS, a fully managed container orchestration service. You'll learn how to run and manage containers using ECS, including creating task definitions, managing services, and scaling with auto-scaling capabilities.
+
+**Project:** You'll deploy a multi-container application using ECS, configure auto-scaling policies, and ensure high availability and efficient resource utilization.
 
 ## Day 23: AWS EKS (Elastic Kubernetes Service)
 
@@ -149,47 +149,39 @@ This day introduces AWS EKS, a fully managed Kubernetes service. You'll learn ho
 
 **Project:** You'll deploy a sample application on EKS using Kubernetes manifests, demonstrating the capabilities of running containerized applications on a managed Kubernetes service.
 
-## Day 24: AWS CloudWatch Logs
-
-You'll explore AWS CloudWatch Logs, a service for collecting and analyzing log data. You'll learn how to configure log groups, streams, and filters to centralize log management and gain insights into application behavior and troubleshooting.
-
-**Project:** You'll set up CloudWatch Logs for a production application, configure log groups and streams, and create filters to extract relevant log data.
-
-## Day 25: AWS Secrets Manager
+## Day 24: AWS Systems Manager
 
 This day focuses on AWS Secrets Manager, a service for storing and managing secrets such as database credentials, API keys, and other sensitive information. You'll learn how to store, retrieve, and rotate secrets securely in your applications.
 
 **Project:** You'll configure Secrets Manager to store and manage secrets, integrate secret retrieval in an application, and implement secret rotation policies.
 
-## Day 26: AWS Auto Scaling
+## Day 25: AWS Auto Scaling
 
 You'll dive into AWS Auto Scaling, a service for automatically adjusting the capacity of your AWS resources based on demand. You'll learn how to configure Auto Scaling groups, scaling policies, and scaling based on metrics.
 
 **Project:** You'll configure an Auto Scaling group for an application, define scaling policies based on metrics such as CPU utilization, and observe the dynamic scaling behavior.
 
-## Day 27: AWS RDS (Relational Database Service)
+## Day 26: AWS RDS (Relational Database Service)
 
 This day introduces AWS RDS, a managed database service for relational databases. You'll learn how to create and manage RDS instances, configure backups, snapshots, and replication to ensure high availability and data durability.
 
 **Project:** You'll provision an RDS instance, configure backups and snapshots, and test replication scenarios for a sample database.
 
-## Day 28: AWS Elastic Load Balancer
+## Day 27: AWS Elastic Load Balancer
 
 You'll explore AWS Elastic Load Balancer, a service for distributing incoming application traffic across multiple targets. You'll learn how to configure and manage load balancers to ensure high availability, fault tolerance, and scalability.
 
 **Project:** You'll configure an Elastic Load Balancer for an application, define target groups, and observe the load balancing behavior across instances.
 
-## Day 29: AWS Systems Manager
-
-You'll explore AWS Systems Manager, a management service for AWS resources. You'll learn how to use Systems Manager to manage EC2 instances, perform patch management, automate administrative tasks, and configure resource compliance.
-
-**Project:** You'll leverage Systems Manager to manage EC2 instances, perform common administrative tasks, and ensure compliance with configuration policies.
-
-## Day 30: AWS Cloud Migration Strategies and Tools
+## Day 28: AWS Cloud Migration Strategies and Tools
 
 This day focuses on learning how to migrate applications to AWS cloud. What are the most popular strategies and tools used to achieve the cloud migration.
 
-## Day 31: AWS Best Practices and Job Preparation
+## Day 29: 500 AWS interview questions and answers topic wise for interviews.
+
+This day focuses on learning how to migrate applications to AWS cloud. What are the most popular strategies and tools used to achieve the cloud migration.
+
+## Day 30: AWS Best Practices and Job Preparation
 
 On the final day, you'll review best practices for AWS services, including security, cost optimization and performance.
 
