@@ -125,35 +125,35 @@ This day focuses on AWS CloudWatch Events and EventBridge, services for event-dr
 
 **Project:** You'll configure a s3 bucket to host a static website and learn how to serve the requests to this website through CDN that is AWS Cloud Front.
 
-## Day 20: AWS CloudTrail and Config
-
-You'll explore AWS CloudTrail and AWS Config, which provide auditing and compliance capabilities. You'll learn how to track API calls using CloudTrail and ensure compliance with AWS Config rules.
-
-**Project:** You'll configure CloudTrail to log API activities and set up AWS Config rules to enforce compliance policies for your AWS resources.
-
-## Day 21: AWS ECR (Elastic Container Registry)
+## Day 20: AWS ECR (Elastic Container Registry)
 
 You'll explore AWS ECR, a fully managed container registry for storing and managing container images. You'll learn how to push and pull Docker images to and from ECR, enabling seamless integration with ECS and other container services.
 
 **Project:** You'll build a CI/CD pipeline that automatically builds, pushes, and deploys Docker images to ECR, ensuring streamlined container image management.
 
-## Day 22: AWS ECS (Elastic Container Service)
+## Day 21: AWS ECS (Elastic Container Service)
 
 This day focuses on AWS ECS, a fully managed container orchestration service. You'll learn how to run and manage containers using ECS, including creating task definitions, managing services, and scaling with auto-scaling capabilities.
 
 **Project:** You'll deploy a multi-container application using ECS, configure auto-scaling policies, and ensure high availability and efficient resource utilization.
 
-## Day 23: AWS EKS (Elastic Kubernetes Service)
+## Day 22: AWS EKS (Elastic Kubernetes Service)
 
 This day introduces AWS EKS, a fully managed Kubernetes service. You'll learn how to deploy and manage Kubernetes clusters using EKS, including launching worker nodes, configuring networking, and deploying applications using Kubernetes manifests.
 
 **Project:** You'll deploy a sample application on EKS using Kubernetes manifests, demonstrating the capabilities of running containerized applications on a managed Kubernetes service.
 
-## Day 24: AWS Systems Manager
+## Day 23: AWS Systems Manager
 
 This day focuses on AWS Secrets Manager, a service for storing and managing secrets such as database credentials, API keys, and other sensitive information. You'll learn how to store, retrieve, and rotate secrets securely in your applications.
 
 **Project:** You'll configure Secrets Manager to store and manage secrets, integrate secret retrieval in an application, and implement secret rotation policies.
+
+## Day 24: AWS CloudTrail and Config
+
+You'll explore AWS CloudTrail and AWS Config, which provide auditing and compliance capabilities. You'll learn how to track API calls using CloudTrail and ensure compliance with AWS Config rules.
+
+**Project:** You'll configure CloudTrail to log API activities and set up AWS Config rules to enforce compliance policies for your AWS resources.
 
 ## Day 25: AWS Auto Scaling
 
@@ -161,17 +161,17 @@ You'll dive into AWS Auto Scaling, a service for automatically adjusting the cap
 
 **Project:** You'll configure an Auto Scaling group for an application, define scaling policies based on metrics such as CPU utilization, and observe the dynamic scaling behavior.
 
-## Day 26: AWS RDS (Relational Database Service)
-
-This day introduces AWS RDS, a managed database service for relational databases. You'll learn how to create and manage RDS instances, configure backups, snapshots, and replication to ensure high availability and data durability.
-
-**Project:** You'll provision an RDS instance, configure backups and snapshots, and test replication scenarios for a sample database.
-
-## Day 27: AWS Elastic Load Balancer
+## Day 26: AWS Elastic Load Balancer
 
 You'll explore AWS Elastic Load Balancer, a service for distributing incoming application traffic across multiple targets. You'll learn how to configure and manage load balancers to ensure high availability, fault tolerance, and scalability.
 
 **Project:** You'll configure an Elastic Load Balancer for an application, define target groups, and observe the load balancing behavior across instances.
+
+## Day 27: AWS RDS (Relational Database Service)
+
+This day introduces AWS RDS, a managed database service for relational databases. You'll learn how to create and manage RDS instances, configure backups, snapshots, and replication to ensure high availability and data durability.
+
+**Project:** You'll provision an RDS instance, configure backups and snapshots, and test replication scenarios for a sample database.
 
 ## Day 28: AWS Cloud Migration Strategies and Tools
 
