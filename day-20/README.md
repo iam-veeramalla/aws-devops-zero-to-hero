@@ -1,6 +1,6 @@
 # Introduction to AWS ECR (Elastic Container Registry)
 
-Welcome, beginners to DevOps and the Cloud, to this comprehensive guide on AWS Elastic Container Registry (ECR). In this article, we'll delve into the fundamental concepts of ECR and provide you with a step-by-step practical guide on how to use it effectively. So, let's get started!
+In this video, we will deep dive into the fundamental concepts of ECR and provide you with a step-by-step practical guide on how to use it effectively. So, let's get started!
 
 ## Table of Contents
 1. What is AWS ECR?
@@ -84,7 +84,3 @@ As good practice, remember to clean up resources that you no longer need to avoi
 1. Make sure there are no images in the repository, or delete the images using `docker rmi` locally.
 2. Go to the AWS Management Console, navigate to the Amazon ECR service, and select your repository.
 3. Click on "Delete" and confirm the action.
-
-That's it! You've now learned the basics of AWS Elastic Container Registry (ECR) and how to use it to store and manage your Docker container images effectively. I hope this guide has been helpful on your journey to mastering AWS and DevOps.
-
-Happy coding! 🚀
