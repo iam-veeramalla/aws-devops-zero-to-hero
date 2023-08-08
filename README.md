@@ -149,17 +149,17 @@ This day focuses on AWS Secrets Manager, a service for storing and managing secr
 
 **Project:** You'll configure Secrets Manager to store and manage secrets, integrate secret retrieval in an application, and implement secret rotation policies.
 
-## Day 24: AWS CloudTrail and Config
+## Day 24: Create Infrastructure using Terraform
+
+This day focusses on creating infrastructure using Terraform with real time example.
+
+**Project:** You'll create a VPC and deploy 2 applications in different availability zones. We will also create a load balancer to balance the load between the instances automatically.
+
+## Day 25: AWS CloudTrail and Config
 
 You'll explore AWS CloudTrail and AWS Config, which provide auditing and compliance capabilities. You'll learn how to track API calls using CloudTrail and ensure compliance with AWS Config rules.
 
 **Project:** You'll configure CloudTrail to log API activities and set up AWS Config rules to enforce compliance policies for your AWS resources.
-
-## Day 25: AWS Auto Scaling
-
-You'll dive into AWS Auto Scaling, a service for automatically adjusting the capacity of your AWS resources based on demand. You'll learn how to configure Auto Scaling groups, scaling policies, and scaling based on metrics.
-
-**Project:** You'll configure an Auto Scaling group for an application, define scaling policies based on metrics such as CPU utilization, and observe the dynamic scaling behavior.
 
 ## Day 26: AWS Elastic Load Balancer
 
