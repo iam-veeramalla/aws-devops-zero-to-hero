@@ -167,21 +167,17 @@ You'll explore AWS Elastic Load Balancer, a service for distributing incoming ap
 
 **Project:** You'll configure an Elastic Load Balancer for an application, define target groups, and observe the load balancing behavior across instances.
 
-## Day 27: AWS RDS (Relational Database Service)
+## Day 27: 500 AWS interview questions and answers topic wise for interviews.
 
-This day introduces AWS RDS, a managed database service for relational databases. You'll learn how to create and manage RDS instances, configure backups, snapshots, and replication to ensure high availability and data durability.
-
-**Project:** You'll provision an RDS instance, configure backups and snapshots, and test replication scenarios for a sample database.
+This day focuses on learning how to migrate applications to AWS cloud. What are the most popular strategies and tools used to achieve the cloud migration.
 
 ## Day 28: AWS Cloud Migration Strategies and Tools
 
 This day focuses on learning how to migrate applications to AWS cloud. What are the most popular strategies and tools used to achieve the cloud migration.
 
-## Day 29: 500 AWS interview questions and answers topic wise for interviews.
-
-This day focuses on learning how to migrate applications to AWS cloud. What are the most popular strategies and tools used to achieve the cloud migration.
-
-## Day 30: AWS Best Practices and Job Preparation
+## Day 29: AWS Best Practices and Job Preparation
 
 On the final day, you'll review best practices for AWS services, including security, cost optimization and performance.
+
+## Day 30: AWS Project with RDS
 
