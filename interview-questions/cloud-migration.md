@@ -4,8 +4,8 @@ Cloud migration refers to the process of moving applications, data, and workload
 ### 2. What are the common drivers for cloud migration?
 Drivers for cloud migration include cost savings, scalability, agility, improved security, and the ability to leverage advanced cloud services.
 
-### 3. What are the six common cloud migration strategies?
-The six common cloud migration strategies are Rehost (lift and shift), Replatform, Repurchase (buy a SaaS solution), Refactor (rearchitect), Retire, and Retain (leave unchanged).
+### 3. What are the seven common cloud migration strategies?
+The six common cloud migration strategies are Rehost (lift and shift), Replatform, Repurchase (buy a SaaS solution), Refactor (rearchitect), Relocate, Retire, and Retain (leave unchanged).
 
 ### 4. What is the "lift and shift" migration strategy?
 The "lift and shift" strategy (Rehost) involves moving applications and data as they are from on-premises to the cloud without significant modifications.
