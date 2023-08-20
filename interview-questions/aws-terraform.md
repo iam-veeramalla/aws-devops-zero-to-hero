@@ -57,3 +57,9 @@ Terraform applies updates by modifying existing resources rather than recreating
 
 ### 20. Can Terraform be used for managing third-party resources?
 Yes, Terraform has the capability to manage resources beyond AWS. It supports multiple providers, making it versatile for managing various cloud and on-premises resources.
+
+### 21. Who creates "terraform.tfstate.backup" file and under which scenario it is created?
+Backup state file is automaticallt created by terraform, when terraform destroy command is executed. The above is done to restore infrastructure to the same state, prior running terraform destroy command.
+
+### 22. What is terraform workspace and How it is beneficial in day in day out jobs?
+Workspaces in terraform are simply independently managed state files. A workspace contains everything that terraform needs to manage a given collection of infrastructure and seperate workspaces function like seperate working directories.
