@@ -17,7 +17,7 @@ Q: You have a VPC with a public subnet and a private subnet. Instances in the pr
 
 A: To allow internet access for instances in the private subnet, we can use a NAT Gateway or a NAT instance. 
    We would place the NAT Gateway/instance in the public subnet and configure the private subnet route table to send outbound traffic to the NAT Gateway/instance. This way, instances in the private subnet can access the internet through the NAT Gateway/instance.
-   Additionally, it uses the concept of network address translation, so it takes the ip address(private) of the EC2 instance present in private subnet and will translate to the ip address(public) of the NAT gateway present in public subnet therefore adding more security incase the websites/destaination you are trying to reach via internet access gets hacked.
+   Additionally, it uses the concept of network address translation, so it takes the ip address(private) of the EC2 instance present in private subnet and will translate to the ip address(public) of the NAT gateway present in public subnet, therefore adding more security incase the websites/destaination you are trying to reach via internet access gets hacked.
 
 Q: You have launched EC2 instances in your VPC, and you want them to communicate with each other using private IP addresses. What steps would you take to enable this communication?
 
