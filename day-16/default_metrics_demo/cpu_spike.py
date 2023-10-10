@@ -1,3 +1,4 @@
+
 import time
 
 def simulate_cpu_spike(duration=30, cpu_percent=80):
