@@ -1,5 +1,4 @@
 version: 0.2
-
 env:
   parameter-store:
     DOCKER_REGISTRY_USERNAME: /myapp/docker-credentials/username
