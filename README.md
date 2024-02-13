@@ -46,7 +46,7 @@ This day emphasizes security best practices in AWS. You'll learn how to implemen
     Configure security groups for EC2 instances to allow specific ports and protocols.
 
 - Provision EC2 instances:
-    Launch EC2 instances in both the public and private subnets.
+    Launch EC2 instances in both the private subnets.
     Configure security groups for the instances to allow necessary traffic.
     Create and assign IAM roles to the instances with appropriate permissions.
 
