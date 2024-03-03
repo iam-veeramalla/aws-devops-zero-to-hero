@@ -2,7 +2,7 @@
 set -e
 
 # Stop the running container (if any)
-container_id=$(docker ps | awk -F" " '{print $1}')
+container_id=$(docker ps | awk -F' ' '{print $1}')
 
 # Check if any running container found
 if [ -z "$container_id" ]; then
