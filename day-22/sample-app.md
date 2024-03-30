@@ -3,7 +3,7 @@
 ## Copy the deploy.yml to your local and save it with name deploy.yml
 
 ```
-apiVersion: apps/v1
+apiVersion: apps/v2
 kind: Deployment
 metadata:
   name: eks-sample-linux-deployment
