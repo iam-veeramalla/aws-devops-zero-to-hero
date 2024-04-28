@@ -1,0 +1,4507 @@
+{
+  "version":"2.0",
+  "metadata":{
+    "apiVersion":"2023-06-05",
+    "endpointPrefix":"bedrock-agent",
+    "jsonVersion":"1.1",
+    "protocol":"rest-json",
+    "serviceFullName":"Agents for Amazon Bedrock",
+    "serviceId":"Bedrock Agent",
+    "signatureVersion":"v4",
+    "signingName":"bedrock",
+    "uid":"bedrock-agent-2023-06-05"
+  },
+  "operations":{
+    "AssociateAgentKnowledgeBase":{
+      "name":"AssociateAgentKnowledgeBase",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/",
+        "responseCode":200
+      },
+      "input":{"shape":"AssociateAgentKnowledgeBaseRequest"},
+      "output":{"shape":"AssociateAgentKnowledgeBaseResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "documentation":"<p>Associates a knowledge base with an agent. If a knowledge base is associated and its <code>indexState</code> is set to <code>Enabled</code>, the agent queries the knowledge base for information to augment its response to the user.</p>",
+      "idempotent":true
+    },
+    "CreateAgent":{
+      "name":"CreateAgent",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/agents/",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateAgentRequest"},
+      "output":{"shape":"CreateAgentResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "documentation":"<p>Creates an agent that orchestrates interactions between foundation models, data sources, software applications, user conversations, and APIs to carry out tasks to help customers.</p> <ul> <li> <p>Specify the following fields for security purposes.</p> <ul> <li> <p> <code>agentResourceRoleArn</code> – The Amazon Resource Name (ARN) of the role with permissions to invoke API operations on an agent.</p> </li> <li> <p>(Optional) <code>customerEncryptionKeyArn</code> – The Amazon Resource Name (ARN) of a KMS key to encrypt the creation of the agent.</p> </li> <li> <p>(Optional) <code>idleSessionTTLinSeconds</code> – Specify the number of seconds for which the agent should maintain session information. After this time expires, the subsequent <code>InvokeAgent</code> request begins a new session.</p> </li> </ul> </li> <li> <p>To override the default prompt behavior for agent orchestration and to use advanced prompts, include a <code>promptOverrideConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p> </li> <li> <p>If you agent fails to be created, the response returns a list of <code>failureReasons</code> alongside a list of <code>recommendedActions</code> for you to troubleshoot.</p> </li> </ul>",
+      "idempotent":true
+    },
+    "CreateAgentActionGroup":{
+      "name":"CreateAgentActionGroup",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/agents/{agentId}/agentversions/{agentVersion}/actiongroups/",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateAgentActionGroupRequest"},
+      "output":{"shape":"CreateAgentActionGroupResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "documentation":"<p>Creates an action group for an agent. An action group represents the actions that an agent can carry out for the customer by defining the APIs that an agent can call and the logic for calling them.</p> <p>To allow your agent to request the user for additional information when trying to complete a task, add an action group with the <code>parentActionGroupSignature</code> field set to <code>AMAZON.UserInput</code>. You must leave the <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields blank for this action group. During orchestration, if your agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>",
+      "idempotent":true
+    },
+    "CreateAgentAlias":{
+      "name":"CreateAgentAlias",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/agents/{agentId}/agentaliases/",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateAgentAliasRequest"},
+      "output":{"shape":"CreateAgentAliasResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "documentation":"<p>Creates an alias of an agent that can be used to deploy the agent.</p>",
+      "idempotent":true
+    },
+    "CreateDataSource":{
+      "name":"CreateDataSource",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/knowledgebases/{knowledgeBaseId}/datasources/",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateDataSourceRequest"},
+      "output":{"shape":"CreateDataSourceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "documentation":"<p>Sets up a data source to be added to a knowledge base.</p> <important> <p>You can't change the <code>chunkingConfiguration</code> after you create the data source.</p> </important>",
+      "idempotent":true
+    },
+    "CreateKnowledgeBase":{
+      "name":"CreateKnowledgeBase",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/knowledgebases/",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateKnowledgeBaseRequest"},
+      "output":{"shape":"CreateKnowledgeBaseResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "documentation":"<p>Creates a knowledge base that contains data sources from which information can be queried and used by LLMs. To create a knowledge base, you must first set up your data sources and configure a supported vector store. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup.html\">Set up your data for ingestion</a>.</p> <note> <p>If you prefer to let Amazon Bedrock create and manage a vector store for you in Amazon OpenSearch Service, use the console. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-create\">Create a knowledge base</a>.</p> </note> <ul> <li> <p>Provide the <code>name</code> and an optional <code>description</code>.</p> </li> <li> <p>Provide the Amazon Resource Name (ARN) with permissions to create a knowledge base in the <code>roleArn</code> field.</p> </li> <li> <p>Provide the embedding model to use in the <code>embeddingModelArn</code> field in the <code>knowledgeBaseConfiguration</code> object.</p> </li> <li> <p>Provide the configuration for your vector store in the <code>storageConfiguration</code> object.</p> <ul> <li> <p>For an Amazon OpenSearch Service database, use the <code>opensearchServerlessConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html\">Create a vector store in Amazon OpenSearch Service</a>.</p> </li> <li> <p>For an Amazon Aurora database, use the <code>RdsConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-rds.html\">Create a vector store in Amazon Aurora</a>.</p> </li> <li> <p>For a Pinecone database, use the <code>pineconeConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-pinecone.html\">Create a vector store in Pinecone</a>.</p> </li> <li> <p>For a Redis Enterprise Cloud database, use the <code>redisEnterpriseCloudConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-redis.html\">Create a vector store in Redis Enterprise Cloud</a>.</p> </li> </ul> </li> </ul>",
+      "idempotent":true
+    },
+    "DeleteAgent":{
+      "name":"DeleteAgent",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/agents/{agentId}/",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteAgentRequest"},
+      "output":{"shape":"DeleteAgentResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ],
+      "documentation":"<p>Deletes an agent.</p>",
+      "idempotent":true
+    },
+    "DeleteAgentActionGroup":{
+      "name":"DeleteAgentActionGroup",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteAgentActionGroupRequest"},
+      "output":{"shape":"DeleteAgentActionGroupResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ],
+      "documentation":"<p>Deletes an action group in an agent.</p>",
+      "idempotent":true
+    },
+    "DeleteAgentAlias":{
+      "name":"DeleteAgentAlias",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/agents/{agentId}/agentaliases/{agentAliasId}/",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteAgentAliasRequest"},
+      "output":{"shape":"DeleteAgentAliasResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Deletes an alias of an agent.</p>",
+      "idempotent":true
+    },
+    "DeleteAgentVersion":{
+      "name":"DeleteAgentVersion",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/agents/{agentId}/agentversions/{agentVersion}/",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteAgentVersionRequest"},
+      "output":{"shape":"DeleteAgentVersionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ],
+      "documentation":"<p>Deletes a version of an agent.</p>",
+      "idempotent":true
+    },
+    "DeleteDataSource":{
+      "name":"DeleteDataSource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteDataSourceRequest"},
+      "output":{"shape":"DeleteDataSourceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ],
+      "documentation":"<p>Deletes a data source from a knowledge base.</p>",
+      "idempotent":true
+    },
+    "DeleteKnowledgeBase":{
+      "name":"DeleteKnowledgeBase",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/knowledgebases/{knowledgeBaseId}",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteKnowledgeBaseRequest"},
+      "output":{"shape":"DeleteKnowledgeBaseResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ],
+      "documentation":"<p>Deletes a knowledge base. Before deleting a knowledge base, you should disassociate the knowledge base from any agents that it is associated with by making a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_DisassociateAgentKnowledgeBase.html\">DisassociateAgentKnowledgeBase</a> request.</p>",
+      "idempotent":true
+    },
+    "DisassociateAgentKnowledgeBase":{
+      "name":"DisassociateAgentKnowledgeBase",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/",
+        "responseCode":204
+      },
+      "input":{"shape":"DisassociateAgentKnowledgeBaseRequest"},
+      "output":{"shape":"DisassociateAgentKnowledgeBaseResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ],
+      "documentation":"<p>Disassociates a knowledge base from an agent.</p>",
+      "idempotent":true
+    },
+    "GetAgent":{
+      "name":"GetAgent",
+      "http":{
+        "method":"GET",
+        "requestUri":"/agents/{agentId}/",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAgentRequest"},
+      "output":{"shape":"GetAgentResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Gets information about an agent.</p>"
+    },
+    "GetAgentActionGroup":{
+      "name":"GetAgentActionGroup",
+      "http":{
+        "method":"GET",
+        "requestUri":"/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAgentActionGroupRequest"},
+      "output":{"shape":"GetAgentActionGroupResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Gets information about an action group for an agent.</p>"
+    },
+    "GetAgentAlias":{
+      "name":"GetAgentAlias",
+      "http":{
+        "method":"GET",
+        "requestUri":"/agents/{agentId}/agentaliases/{agentAliasId}/",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAgentAliasRequest"},
+      "output":{"shape":"GetAgentAliasResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Gets information about an alias of an agent.</p>"
+    },
+    "GetAgentKnowledgeBase":{
+      "name":"GetAgentKnowledgeBase",
+      "http":{
+        "method":"GET",
+        "requestUri":"/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAgentKnowledgeBaseRequest"},
+      "output":{"shape":"GetAgentKnowledgeBaseResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Gets information about a knowledge base associated with an agent.</p>"
+    },
+    "GetAgentVersion":{
+      "name":"GetAgentVersion",
+      "http":{
+        "method":"GET",
+        "requestUri":"/agents/{agentId}/agentversions/{agentVersion}/",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAgentVersionRequest"},
+      "output":{"shape":"GetAgentVersionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Gets details about a version of an agent.</p>"
+    },
+    "GetDataSource":{
+      "name":"GetDataSource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetDataSourceRequest"},
+      "output":{"shape":"GetDataSourceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Gets information about a data source.</p>"
+    },
+    "GetIngestionJob":{
+      "name":"GetIngestionJob",
+      "http":{
+        "method":"GET",
+        "requestUri":"/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/{ingestionJobId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetIngestionJobRequest"},
+      "output":{"shape":"GetIngestionJobResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Gets information about a ingestion job, in which a data source is added to a knowledge base.</p>"
+    },
+    "GetKnowledgeBase":{
+      "name":"GetKnowledgeBase",
+      "http":{
+        "method":"GET",
+        "requestUri":"/knowledgebases/{knowledgeBaseId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetKnowledgeBaseRequest"},
+      "output":{"shape":"GetKnowledgeBaseResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Gets information about a knoweldge base.</p>"
+    },
+    "ListAgentActionGroups":{
+      "name":"ListAgentActionGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/agents/{agentId}/agentversions/{agentVersion}/actiongroups/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAgentActionGroupsRequest"},
+      "output":{"shape":"ListAgentActionGroupsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Lists the action groups for an agent and information about each one.</p>"
+    },
+    "ListAgentAliases":{
+      "name":"ListAgentAliases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/agents/{agentId}/agentaliases/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAgentAliasesRequest"},
+      "output":{"shape":"ListAgentAliasesResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Lists the aliases of an agent and information about each one.</p>"
+    },
+    "ListAgentKnowledgeBases":{
+      "name":"ListAgentKnowledgeBases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAgentKnowledgeBasesRequest"},
+      "output":{"shape":"ListAgentKnowledgeBasesResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Lists knowledge bases associated with an agent and information about each one.</p>"
+    },
+    "ListAgentVersions":{
+      "name":"ListAgentVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/agents/{agentId}/agentversions/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAgentVersionsRequest"},
+      "output":{"shape":"ListAgentVersionsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Lists the versions of an agent and information about each version.</p>"
+    },
+    "ListAgents":{
+      "name":"ListAgents",
+      "http":{
+        "method":"POST",
+        "requestUri":"/agents/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAgentsRequest"},
+      "output":{"shape":"ListAgentsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ],
+      "documentation":"<p>Lists the agents belonging to an account and information about each agent.</p>"
+    },
+    "ListDataSources":{
+      "name":"ListDataSources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/knowledgebases/{knowledgeBaseId}/datasources/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListDataSourcesRequest"},
+      "output":{"shape":"ListDataSourcesResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Lists the data sources in a knowledge base and information about each one.</p>"
+    },
+    "ListIngestionJobs":{
+      "name":"ListIngestionJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListIngestionJobsRequest"},
+      "output":{"shape":"ListIngestionJobsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Lists the ingestion jobs for a data source and information about each of them.</p>"
+    },
+    "ListKnowledgeBases":{
+      "name":"ListKnowledgeBases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/knowledgebases/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListKnowledgeBasesRequest"},
+      "output":{"shape":"ListKnowledgeBasesResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ],
+      "documentation":"<p>Lists the knowledge bases in an account and information about each of them.</p>"
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>List all the tags for the resource you specify.</p>"
+    },
+    "PrepareAgent":{
+      "name":"PrepareAgent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/agents/{agentId}/",
+        "responseCode":202
+      },
+      "input":{"shape":"PrepareAgentRequest"},
+      "output":{"shape":"PrepareAgentResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "documentation":"<p>Creates a <code>DRAFT</code> version of the agent that can be used for internal testing.</p>"
+    },
+    "StartIngestionJob":{
+      "name":"StartIngestionJob",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/",
+        "responseCode":202
+      },
+      "input":{"shape":"StartIngestionJobRequest"},
+      "output":{"shape":"StartIngestionJobResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "documentation":"<p>Begins an ingestion job, in which a data source is added to a knowledge base.</p>",
+      "idempotent":true
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "documentation":"<p>Associate tags with a resource. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Tagging resources</a> in the Amazon Bedrock User Guide.</p>"
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "documentation":"<p>Remove tags from a resource.</p>",
+      "idempotent":true
+    },
+    "UpdateAgent":{
+      "name":"UpdateAgent",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/agents/{agentId}/",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateAgentRequest"},
+      "output":{"shape":"UpdateAgentResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "documentation":"<p>Updates the configuration of an agent.</p>",
+      "idempotent":true
+    },
+    "UpdateAgentActionGroup":{
+      "name":"UpdateAgentActionGroup",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateAgentActionGroupRequest"},
+      "output":{"shape":"UpdateAgentActionGroupResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "documentation":"<p>Updates the configuration for an action group for an agent.</p>",
+      "idempotent":true
+    },
+    "UpdateAgentAlias":{
+      "name":"UpdateAgentAlias",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/agents/{agentId}/agentaliases/{agentAliasId}/",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateAgentAliasRequest"},
+      "output":{"shape":"UpdateAgentAliasResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "documentation":"<p>Updates configurations for an alias of an agent.</p>",
+      "idempotent":true
+    },
+    "UpdateAgentKnowledgeBase":{
+      "name":"UpdateAgentKnowledgeBase",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateAgentKnowledgeBaseRequest"},
+      "output":{"shape":"UpdateAgentKnowledgeBaseResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ],
+      "documentation":"<p>Updates the configuration for a knowledge base that has been associated with an agent.</p>",
+      "idempotent":true
+    },
+    "UpdateDataSource":{
+      "name":"UpdateDataSource",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateDataSourceRequest"},
+      "output":{"shape":"UpdateDataSourceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ],
+      "documentation":"<p>Updates configurations for a data source.</p> <important> <p>You can't change the <code>chunkingConfiguration</code> after you create the data source. Specify the existing <code>chunkingConfiguration</code>.</p> </important>",
+      "idempotent":true
+    },
+    "UpdateKnowledgeBase":{
+      "name":"UpdateKnowledgeBase",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/knowledgebases/{knowledgeBaseId}",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateKnowledgeBaseRequest"},
+      "output":{"shape":"UpdateKnowledgeBaseResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ],
+      "documentation":"<p>Updates the configuration of a knowledge base with the fields that you specify. Because all fields will be overwritten, you must include the same values for fields that you want to keep the same.</p> <p>You can change the following fields:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>description</code> </p> </li> <li> <p> <code>roleArn</code> </p> </li> </ul> <p>You can't change the <code>knowledgeBaseConfiguration</code> or <code>storageConfiguration</code> fields, so you must specify the same configurations as when you created the knowledge base. You can send a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetKnowledgeBase.html\">GetKnowledgeBase</a> request and copy the same configurations.</p>",
+      "idempotent":true
+    }
+  },
+  "shapes":{
+    "APISchema":{
+      "type":"structure",
+      "members":{
+        "payload":{
+          "shape":"Payload",
+          "documentation":"<p>The JSON or YAML-formatted payload defining the OpenAPI schema for the action group. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html\">Action group OpenAPI schemas</a>.</p>"
+        },
+        "s3":{
+          "shape":"S3Identifier",
+          "documentation":"<p>Contains details about the S3 object containing the OpenAPI schema for the action group. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html\">Action group OpenAPI schemas</a>.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about the OpenAPI schema for the action group. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html\">Action group OpenAPI schemas</a>. You can either include the schema directly in the <code>payload</code> field or you can upload it to an S3 bucket and specify the S3 bucket location in the <code>s3</code> field.</p>",
+      "union":true
+    },
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"NonBlankString"}
+      },
+      "documentation":"<p>The request is denied because of missing access permissions.</p>",
+      "error":{
+        "httpStatusCode":403,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ActionGroupExecutor":{
+      "type":"structure",
+      "members":{
+        "customControl":{
+          "shape":"CustomControlMethod",
+          "documentation":"<p>To return the action group invocation results directly in the <code>InvokeAgent</code> response, specify <code>RETURN_CONTROL</code>.</p>"
+        },
+        "lambda":{
+          "shape":"LambdaArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
+      "union":true
+    },
+    "ActionGroupSignature":{
+      "type":"string",
+      "enum":["AMAZON.UserInput"]
+    },
+    "ActionGroupState":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "ActionGroupSummaries":{
+      "type":"list",
+      "member":{"shape":"ActionGroupSummary"},
+      "max":10,
+      "min":0
+    },
+    "ActionGroupSummary":{
+      "type":"structure",
+      "required":[
+        "actionGroupId",
+        "actionGroupName",
+        "actionGroupState",
+        "updatedAt"
+      ],
+      "members":{
+        "actionGroupId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the action group.</p>"
+        },
+        "actionGroupName":{
+          "shape":"Name",
+          "documentation":"<p>The name of the action group.</p>"
+        },
+        "actionGroupState":{
+          "shape":"ActionGroupState",
+          "documentation":"<p>Specifies whether the action group is available for the agent to invoke or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the action group.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the action group was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about an action group.</p>"
+    },
+    "Agent":{
+      "type":"structure",
+      "required":[
+        "agentArn",
+        "agentId",
+        "agentName",
+        "agentResourceRoleArn",
+        "agentStatus",
+        "agentVersion",
+        "createdAt",
+        "idleSessionTTLInSeconds",
+        "updatedAt"
+      ],
+      "members":{
+        "agentArn":{
+          "shape":"AgentArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the agent.</p>"
+        },
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent.</p>"
+        },
+        "agentName":{
+          "shape":"Name",
+          "documentation":"<p>The name of the agent.</p>"
+        },
+        "agentResourceRoleArn":{
+          "shape":"AgentRoleArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the IAM role with permissions to invoke API operations on the agent.</p>"
+        },
+        "agentStatus":{
+          "shape":"AgentStatus",
+          "documentation":"<p>The status of the agent and whether it is ready for use. The following statuses are possible:</p> <ul> <li> <p>CREATING – The agent is being created.</p> </li> <li> <p>PREPARING – The agent is being prepared.</p> </li> <li> <p>PREPARED – The agent is prepared and ready to be invoked.</p> </li> <li> <p>NOT_PREPARED – The agent has been created but not yet prepared.</p> </li> <li> <p>FAILED – The agent API operation failed.</p> </li> <li> <p>UPDATING – The agent is being updated.</p> </li> <li> <p>DELETING – The agent is being deleted.</p> </li> </ul>"
+        },
+        "agentVersion":{
+          "shape":"DraftVersion",
+          "documentation":"<p>The version of the agent.</p>"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "documentation":"<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>"
+        },
+        "createdAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the agent was created.</p>"
+        },
+        "customerEncryptionKeyArn":{
+          "shape":"KmsKeyArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the KMS key that encrypts the agent.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the agent.</p>"
+        },
+        "failureReasons":{
+          "shape":"FailureReasons",
+          "documentation":"<p>Contains reasons that the agent-related API that you invoked failed.</p>"
+        },
+        "foundationModel":{
+          "shape":"ModelIdentifier",
+          "documentation":"<p>The foundation model used for orchestration by the agent.</p>"
+        },
+        "idleSessionTTLInSeconds":{
+          "shape":"SessionTTL",
+          "documentation":"<p>The number of seconds for which Amazon Bedrock keeps information about a user's conversation with the agent.</p> <p>A user interaction remains active for the amount of time specified. If no conversation occurs during this time, the session expires and Amazon Bedrock deletes any data provided before the timeout.</p>"
+        },
+        "instruction":{
+          "shape":"Instruction",
+          "documentation":"<p>Instructions that tell the agent what it should do and how it should interact with users.</p>"
+        },
+        "preparedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the agent was last prepared.</p>"
+        },
+        "promptOverrideConfiguration":{
+          "shape":"PromptOverrideConfiguration",
+          "documentation":"<p>Contains configurations to override prompt templates in different parts of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>"
+        },
+        "recommendedActions":{
+          "shape":"RecommendedActions",
+          "documentation":"<p>Contains recommended actions to take for the agent-related API that you invoked to succeed.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the agent was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about an agent.</p>"
+    },
+    "AgentActionGroup":{
+      "type":"structure",
+      "required":[
+        "actionGroupId",
+        "actionGroupName",
+        "actionGroupState",
+        "agentId",
+        "agentVersion",
+        "createdAt",
+        "updatedAt"
+      ],
+      "members":{
+        "actionGroupExecutor":{
+          "shape":"ActionGroupExecutor",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action.</p>"
+        },
+        "actionGroupId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the action group.</p>"
+        },
+        "actionGroupName":{
+          "shape":"Name",
+          "documentation":"<p>The name of the action group.</p>"
+        },
+        "actionGroupState":{
+          "shape":"ActionGroupState",
+          "documentation":"<p>Specifies whether the action group is available for the agent to invoke or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>"
+        },
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent to which the action group belongs.</p>"
+        },
+        "agentVersion":{
+          "shape":"Version",
+          "documentation":"<p>The version of the agent to which the action group belongs.</p>"
+        },
+        "apiSchema":{
+          "shape":"APISchema",
+          "documentation":"<p>Contains either details about the S3 object containing the OpenAPI schema for the action group or the JSON or YAML-formatted payload defining the schema. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html\">Action group OpenAPI schemas</a>.</p>"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "documentation":"<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>"
+        },
+        "createdAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the action group was created.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the action group.</p>"
+        },
+        "functionSchema":{
+          "shape":"FunctionSchema",
+          "documentation":"<p>Defines functions that each define parameters that the agent needs to invoke from the user. Each function represents an action in an action group.</p>"
+        },
+        "parentActionSignature":{
+          "shape":"ActionGroupSignature",
+          "documentation":"<p>If this field is set as <code>AMAZON.UserInput</code>, the agent can request the user for additional information when trying to complete a task. The <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields must be blank for this action group.</p> <p>During orchestration, if the agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the action group was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about an action group.</p>"
+    },
+    "AgentAlias":{
+      "type":"structure",
+      "required":[
+        "agentAliasArn",
+        "agentAliasId",
+        "agentAliasName",
+        "agentAliasStatus",
+        "agentId",
+        "createdAt",
+        "routingConfiguration",
+        "updatedAt"
+      ],
+      "members":{
+        "agentAliasArn":{
+          "shape":"AgentAliasArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the alias of the agent.</p>"
+        },
+        "agentAliasHistoryEvents":{
+          "shape":"AgentAliasHistoryEvents",
+          "documentation":"<p>Contains details about the history of the alias.</p>"
+        },
+        "agentAliasId":{
+          "shape":"AgentAliasId",
+          "documentation":"<p>The unique identifier of the alias of the agent.</p>"
+        },
+        "agentAliasName":{
+          "shape":"Name",
+          "documentation":"<p>The name of the alias of the agent.</p>"
+        },
+        "agentAliasStatus":{
+          "shape":"AgentAliasStatus",
+          "documentation":"<p>The status of the alias of the agent and whether it is ready for use. The following statuses are possible:</p> <ul> <li> <p>CREATING – The agent alias is being created.</p> </li> <li> <p>PREPARED – The agent alias is finished being created or updated and is ready to be invoked.</p> </li> <li> <p>FAILED – The agent alias API operation failed.</p> </li> <li> <p>UPDATING – The agent alias is being updated.</p> </li> <li> <p>DELETING – The agent alias is being deleted.</p> </li> </ul>"
+        },
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent.</p>"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "documentation":"<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>"
+        },
+        "createdAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the alias of the agent was created.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the alias of the agent.</p>"
+        },
+        "routingConfiguration":{
+          "shape":"AgentAliasRoutingConfiguration",
+          "documentation":"<p>Contains details about the routing configuration of the alias.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the alias was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about an alias of an agent.</p>"
+    },
+    "AgentAliasArn":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^arn:aws:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:agent-alias/[0-9a-zA-Z]{10}/[0-9a-zA-Z]{10}$"
+    },
+    "AgentAliasHistoryEvent":{
+      "type":"structure",
+      "members":{
+        "endDate":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The date that the alias stopped being associated to the version in the <code>routingConfiguration</code> object</p>"
+        },
+        "routingConfiguration":{
+          "shape":"AgentAliasRoutingConfiguration",
+          "documentation":"<p>Contains details about the version of the agent with which the alias is associated.</p>"
+        },
+        "startDate":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The date that the alias began being associated to the version in the <code>routingConfiguration</code> object.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about the history of the alias.</p>"
+    },
+    "AgentAliasHistoryEvents":{
+      "type":"list",
+      "member":{"shape":"AgentAliasHistoryEvent"},
+      "max":10,
+      "min":0
+    },
+    "AgentAliasId":{
+      "type":"string",
+      "max":10,
+      "min":10,
+      "pattern":"^(\\bTSTALIASID\\b|[0-9a-zA-Z]+)$"
+    },
+    "AgentAliasRoutingConfiguration":{
+      "type":"list",
+      "member":{"shape":"AgentAliasRoutingConfigurationListItem"},
+      "max":1,
+      "min":0
+    },
+    "AgentAliasRoutingConfigurationListItem":{
+      "type":"structure",
+      "required":["agentVersion"],
+      "members":{
+        "agentVersion":{
+          "shape":"Version",
+          "documentation":"<p>The version of the agent with which the alias is associated.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about the routing configuration of the alias.</p>"
+    },
+    "AgentAliasStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "PREPARED",
+        "FAILED",
+        "UPDATING",
+        "DELETING"
+      ]
+    },
+    "AgentAliasSummaries":{
+      "type":"list",
+      "member":{"shape":"AgentAliasSummary"},
+      "max":10,
+      "min":0
+    },
+    "AgentAliasSummary":{
+      "type":"structure",
+      "required":[
+        "agentAliasId",
+        "agentAliasName",
+        "agentAliasStatus",
+        "createdAt",
+        "updatedAt"
+      ],
+      "members":{
+        "agentAliasId":{
+          "shape":"AgentAliasId",
+          "documentation":"<p>Contains details about </p>"
+        },
+        "agentAliasName":{
+          "shape":"Name",
+          "documentation":"<p>The name of the alias.</p>"
+        },
+        "agentAliasStatus":{
+          "shape":"AgentAliasStatus",
+          "documentation":"<p>The status of the alias.</p>"
+        },
+        "createdAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the alias of the agent was created.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the alias.</p>"
+        },
+        "routingConfiguration":{
+          "shape":"AgentAliasRoutingConfiguration",
+          "documentation":"<p>Contains details about the version of the agent with which the alias is associated.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the alias was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about an alias of an agent.</p>"
+    },
+    "AgentArn":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^arn:aws:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:agent/[0-9a-zA-Z]{10}$"
+    },
+    "AgentKnowledgeBase":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "agentVersion",
+        "createdAt",
+        "description",
+        "knowledgeBaseId",
+        "knowledgeBaseState",
+        "updatedAt"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent with which the knowledge base is associated.</p>"
+        },
+        "agentVersion":{
+          "shape":"Version",
+          "documentation":"<p>The version of the agent with which the knowledge base is associated.</p>"
+        },
+        "createdAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the association between the agent and the knowledge base was created.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the association between the agent and the knowledge base.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the association between the agent and the knowledge base.</p>"
+        },
+        "knowledgeBaseState":{
+          "shape":"KnowledgeBaseState",
+          "documentation":"<p>Specifies whether to use the knowledge base or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the association between the agent and the knowledge base was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about a knowledge base that is associated with an agent.</p>"
+    },
+    "AgentKnowledgeBaseSummaries":{
+      "type":"list",
+      "member":{"shape":"AgentKnowledgeBaseSummary"},
+      "max":10,
+      "min":0
+    },
+    "AgentKnowledgeBaseSummary":{
+      "type":"structure",
+      "required":[
+        "knowledgeBaseId",
+        "knowledgeBaseState",
+        "updatedAt"
+      ],
+      "members":{
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the knowledge base associated with an agent.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base associated with an agent.</p>"
+        },
+        "knowledgeBaseState":{
+          "shape":"KnowledgeBaseState",
+          "documentation":"<p>Specifies whether the agent uses the knowledge base or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the knowledge base associated with an agent was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about a knowledge base associated with an agent.</p>"
+    },
+    "AgentRoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^arn:aws(-[^:]+)?:iam::([0-9]{12})?:role/(service-role/)?AmazonBedrockExecutionRoleForAgents_.+$"
+    },
+    "AgentStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "PREPARING",
+        "PREPARED",
+        "NOT_PREPARED",
+        "DELETING",
+        "FAILED",
+        "VERSIONING",
+        "UPDATING"
+      ]
+    },
+    "AgentSummaries":{
+      "type":"list",
+      "member":{"shape":"AgentSummary"},
+      "max":10,
+      "min":0
+    },
+    "AgentSummary":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "agentName",
+        "agentStatus",
+        "updatedAt"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent.</p>"
+        },
+        "agentName":{
+          "shape":"Name",
+          "documentation":"<p>The name of the agent.</p>"
+        },
+        "agentStatus":{
+          "shape":"AgentStatus",
+          "documentation":"<p>The status of the agent.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the agent.</p>"
+        },
+        "latestAgentVersion":{
+          "shape":"Version",
+          "documentation":"<p>The latest version of the agent.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the agent was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about an agent.</p>"
+    },
+    "AgentVersion":{
+      "type":"structure",
+      "required":[
+        "agentArn",
+        "agentId",
+        "agentName",
+        "agentResourceRoleArn",
+        "agentStatus",
+        "createdAt",
+        "idleSessionTTLInSeconds",
+        "updatedAt",
+        "version"
+      ],
+      "members":{
+        "agentArn":{
+          "shape":"AgentArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the agent that the version belongs to.</p>"
+        },
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent that the version belongs to.</p>"
+        },
+        "agentName":{
+          "shape":"Name",
+          "documentation":"<p>The name of the agent that the version belongs to.</p>"
+        },
+        "agentResourceRoleArn":{
+          "shape":"AgentRoleArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the IAM role with permissions to invoke API operations on the agent.</p>"
+        },
+        "agentStatus":{
+          "shape":"AgentStatus",
+          "documentation":"<p>The status of the agent that the version belongs to.</p>"
+        },
+        "createdAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the version was created.</p>"
+        },
+        "customerEncryptionKeyArn":{
+          "shape":"KmsKeyArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the KMS key that encrypts the agent.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the version.</p>"
+        },
+        "failureReasons":{
+          "shape":"FailureReasons",
+          "documentation":"<p>A list of reasons that the API operation on the version failed.</p>"
+        },
+        "foundationModel":{
+          "shape":"ModelIdentifier",
+          "documentation":"<p>The foundation model that the version invokes.</p>"
+        },
+        "idleSessionTTLInSeconds":{
+          "shape":"SessionTTL",
+          "documentation":"<p>The number of seconds for which Amazon Bedrock keeps information about a user's conversation with the agent.</p> <p>A user interaction remains active for the amount of time specified. If no conversation occurs during this time, the session expires and Amazon Bedrock deletes any data provided before the timeout.</p>"
+        },
+        "instruction":{
+          "shape":"Instruction",
+          "documentation":"<p>The instructions provided to the agent.</p>"
+        },
+        "promptOverrideConfiguration":{
+          "shape":"PromptOverrideConfiguration",
+          "documentation":"<p>Contains configurations to override prompt templates in different parts of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>"
+        },
+        "recommendedActions":{
+          "shape":"RecommendedActions",
+          "documentation":"<p>A list of recommended actions to take for the failed API operation on the version to succeed.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the version was last updated.</p>"
+        },
+        "version":{
+          "shape":"NumericalVersion",
+          "documentation":"<p>The version number.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about a version of an agent.</p>"
+    },
+    "AgentVersionSummaries":{
+      "type":"list",
+      "member":{"shape":"AgentVersionSummary"},
+      "max":10,
+      "min":0
+    },
+    "AgentVersionSummary":{
+      "type":"structure",
+      "required":[
+        "agentName",
+        "agentStatus",
+        "agentVersion",
+        "createdAt",
+        "updatedAt"
+      ],
+      "members":{
+        "agentName":{
+          "shape":"Name",
+          "documentation":"<p>The name of the agent to which the version belongs.</p>"
+        },
+        "agentStatus":{
+          "shape":"AgentStatus",
+          "documentation":"<p>The status of the agent to which the version belongs.</p>"
+        },
+        "agentVersion":{
+          "shape":"Version",
+          "documentation":"<p>The version of the agent.</p>"
+        },
+        "createdAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the version was created.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the version of the agent.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the version was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about a version of an agent.</p>"
+    },
+    "AssociateAgentKnowledgeBaseRequest":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "agentVersion",
+        "description",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent with which you want to associate the knowledge base.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "agentVersion":{
+          "shape":"DraftVersion",
+          "documentation":"<p>The version of the agent with which you want to associate the knowledge base.</p>",
+          "location":"uri",
+          "locationName":"agentVersion"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>A description of what the agent should use the knowledge base for.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base to associate with the agent.</p>"
+        },
+        "knowledgeBaseState":{
+          "shape":"KnowledgeBaseState",
+          "documentation":"<p>Specifies whether to use the knowledge base or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>"
+        }
+      }
+    },
+    "AssociateAgentKnowledgeBaseResponse":{
+      "type":"structure",
+      "required":["agentKnowledgeBase"],
+      "members":{
+        "agentKnowledgeBase":{
+          "shape":"AgentKnowledgeBase",
+          "documentation":"<p>Contains details about the knowledge base that has been associated with the agent.</p>"
+        }
+      }
+    },
+    "BasePromptTemplate":{
+      "type":"string",
+      "max":100000,
+      "min":1
+    },
+    "BedrockEmbeddingModelArn":{
+      "type":"string",
+      "max":1011,
+      "min":20,
+      "pattern":"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}))$"
+    },
+    "Boolean":{
+      "type":"boolean",
+      "box":true
+    },
+    "BucketOwnerAccountId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"^[0-9]{12}$"
+    },
+    "ChunkingConfiguration":{
+      "type":"structure",
+      "required":["chunkingStrategy"],
+      "members":{
+        "chunkingStrategy":{
+          "shape":"ChunkingStrategy",
+          "documentation":"<p>Knowledge base can split your source data into chunks. A <i>chunk</i> refers to an excerpt from a data source that is returned when the knowledge base that it belongs to is queried. You have the following options for chunking your data. If you opt for <code>NONE</code>, then you may want to pre-process your files by splitting them up such that each file corresponds to a chunk.</p> <ul> <li> <p> <code>FIXED_SIZE</code> – Amazon Bedrock splits your source data into chunks of the approximate size that you set in the <code>fixedSizeChunkingConfiguration</code>.</p> </li> <li> <p> <code>NONE</code> – Amazon Bedrock treats each file as one chunk. If you choose this option, you may want to pre-process your documents by splitting them into separate files.</p> </li> </ul>"
+        },
+        "fixedSizeChunkingConfiguration":{
+          "shape":"FixedSizeChunkingConfiguration",
+          "documentation":"<p>Configurations for when you choose fixed-size chunking. If you set the <code>chunkingStrategy</code> as <code>NONE</code>, exclude this field.</p>"
+        }
+      },
+      "documentation":"<p>Details about how to chunk the documents in the data source. A <i>chunk</i> refers to an excerpt from a data source that is returned when the knowledge base that it belongs to is queried.</p>"
+    },
+    "ChunkingStrategy":{
+      "type":"string",
+      "enum":[
+        "FIXED_SIZE",
+        "NONE"
+      ]
+    },
+    "ClientToken":{
+      "type":"string",
+      "max":256,
+      "min":33,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$"
+    },
+    "ColumnName":{
+      "type":"string",
+      "max":63,
+      "min":0,
+      "pattern":"^[a-zA-Z0-9_\\-]+$"
+    },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"NonBlankString"}
+      },
+      "documentation":"<p>There was a conflict performing an operation.</p>",
+      "error":{
+        "httpStatusCode":409,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "CreateAgentActionGroupRequest":{
+      "type":"structure",
+      "required":[
+        "actionGroupName",
+        "agentId",
+        "agentVersion"
+      ],
+      "members":{
+        "actionGroupExecutor":{
+          "shape":"ActionGroupExecutor",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action.</p>"
+        },
+        "actionGroupName":{
+          "shape":"Name",
+          "documentation":"<p>The name to give the action group.</p>"
+        },
+        "actionGroupState":{
+          "shape":"ActionGroupState",
+          "documentation":"<p>Specifies whether the action group is available for the agent to invoke or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>"
+        },
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent for which to create the action group.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "agentVersion":{
+          "shape":"DraftVersion",
+          "documentation":"<p>The version of the agent for which to create the action group.</p>",
+          "location":"uri",
+          "locationName":"agentVersion"
+        },
+        "apiSchema":{
+          "shape":"APISchema",
+          "documentation":"<p>Contains either details about the S3 object containing the OpenAPI schema for the action group or the JSON or YAML-formatted payload defining the schema. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html\">Action group OpenAPI schemas</a>.</p>"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "documentation":"<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+          "idempotencyToken":true
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>A description of the action group.</p>"
+        },
+        "functionSchema":{
+          "shape":"FunctionSchema",
+          "documentation":"<p>Contains details about the function schema for the action group or the JSON or YAML-formatted payload defining the schema.</p>"
+        },
+        "parentActionGroupSignature":{
+          "shape":"ActionGroupSignature",
+          "documentation":"<p>To allow your agent to request the user for additional information when trying to complete a task, set this field to <code>AMAZON.UserInput</code>. You must leave the <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields blank for this action group.</p> <p>During orchestration, if your agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>"
+        }
+      }
+    },
+    "CreateAgentActionGroupResponse":{
+      "type":"structure",
+      "required":["agentActionGroup"],
+      "members":{
+        "agentActionGroup":{
+          "shape":"AgentActionGroup",
+          "documentation":"<p>Contains details about the action group that was created.</p>"
+        }
+      }
+    },
+    "CreateAgentAliasRequest":{
+      "type":"structure",
+      "required":[
+        "agentAliasName",
+        "agentId"
+      ],
+      "members":{
+        "agentAliasName":{
+          "shape":"Name",
+          "documentation":"<p>The name of the alias.</p>"
+        },
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "documentation":"<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+          "idempotencyToken":true
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>A description of the alias of the agent.</p>"
+        },
+        "routingConfiguration":{
+          "shape":"AgentAliasRoutingConfiguration",
+          "documentation":"<p>Contains details about the routing configuration of the alias.</p>"
+        },
+        "tags":{
+          "shape":"TagsMap",
+          "documentation":"<p>Any tags that you want to attach to the alias of the agent.</p>"
+        }
+      }
+    },
+    "CreateAgentAliasResponse":{
+      "type":"structure",
+      "required":["agentAlias"],
+      "members":{
+        "agentAlias":{
+          "shape":"AgentAlias",
+          "documentation":"<p>Contains details about the alias that was created.</p>"
+        }
+      }
+    },
+    "CreateAgentRequest":{
+      "type":"structure",
+      "required":["agentName"],
+      "members":{
+        "agentName":{
+          "shape":"Name",
+          "documentation":"<p>A name for the agent that you create.</p>"
+        },
+        "agentResourceRoleArn":{
+          "shape":"AgentRoleArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the IAM role with permissions to invoke API operations on the agent.</p>"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "documentation":"<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+          "idempotencyToken":true
+        },
+        "customerEncryptionKeyArn":{
+          "shape":"KmsKeyArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the KMS key with which to encrypt the agent.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>A description of the agent.</p>"
+        },
+        "foundationModel":{
+          "shape":"ModelIdentifier",
+          "documentation":"<p>The foundation model to be used for orchestration by the agent you create.</p>"
+        },
+        "idleSessionTTLInSeconds":{
+          "shape":"SessionTTL",
+          "documentation":"<p>The number of seconds for which Amazon Bedrock keeps information about a user's conversation with the agent.</p> <p>A user interaction remains active for the amount of time specified. If no conversation occurs during this time, the session expires and Amazon Bedrock deletes any data provided before the timeout.</p>"
+        },
+        "instruction":{
+          "shape":"Instruction",
+          "documentation":"<p>Instructions that tell the agent what it should do and how it should interact with users.</p>"
+        },
+        "promptOverrideConfiguration":{
+          "shape":"PromptOverrideConfiguration",
+          "documentation":"<p>Contains configurations to override prompts in different parts of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>"
+        },
+        "tags":{
+          "shape":"TagsMap",
+          "documentation":"<p>Any tags that you want to attach to the agent.</p>"
+        }
+      }
+    },
+    "CreateAgentResponse":{
+      "type":"structure",
+      "required":["agent"],
+      "members":{
+        "agent":{
+          "shape":"Agent",
+          "documentation":"<p>Contains details about the agent created.</p>"
+        }
+      }
+    },
+    "CreateDataSourceRequest":{
+      "type":"structure",
+      "required":[
+        "dataSourceConfiguration",
+        "knowledgeBaseId",
+        "name"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "documentation":"<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+          "idempotencyToken":true
+        },
+        "dataDeletionPolicy":{
+          "shape":"DataDeletionPolicy",
+          "documentation":"<p>The deletion policy for the requested data source</p>"
+        },
+        "dataSourceConfiguration":{
+          "shape":"DataSourceConfiguration",
+          "documentation":"<p>Contains metadata about where the data source is stored.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>A description of the data source.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base to which to add the data source.</p>",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        },
+        "name":{
+          "shape":"Name",
+          "documentation":"<p>The name of the data source.</p>"
+        },
+        "serverSideEncryptionConfiguration":{
+          "shape":"ServerSideEncryptionConfiguration",
+          "documentation":"<p>Contains details about the server-side encryption for the data source.</p>"
+        },
+        "vectorIngestionConfiguration":{
+          "shape":"VectorIngestionConfiguration",
+          "documentation":"<p>Contains details about how to ingest the documents in the data source.</p>"
+        }
+      }
+    },
+    "CreateDataSourceResponse":{
+      "type":"structure",
+      "required":["dataSource"],
+      "members":{
+        "dataSource":{
+          "shape":"DataSource",
+          "documentation":"<p>Contains details about the data source.</p>"
+        }
+      }
+    },
+    "CreateKnowledgeBaseRequest":{
+      "type":"structure",
+      "required":[
+        "knowledgeBaseConfiguration",
+        "name",
+        "roleArn",
+        "storageConfiguration"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "documentation":"<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+          "idempotencyToken":true
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>A description of the knowledge base.</p>"
+        },
+        "knowledgeBaseConfiguration":{
+          "shape":"KnowledgeBaseConfiguration",
+          "documentation":"<p>Contains details about the embeddings model used for the knowledge base.</p>"
+        },
+        "name":{
+          "shape":"Name",
+          "documentation":"<p>A name for the knowledge base.</p>"
+        },
+        "roleArn":{
+          "shape":"KnowledgeBaseRoleArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the IAM role with permissions to invoke API operations on the knowledge base.</p>"
+        },
+        "storageConfiguration":{
+          "shape":"StorageConfiguration",
+          "documentation":"<p>Contains details about the configuration of the vector database used for the knowledge base.</p>"
+        },
+        "tags":{
+          "shape":"TagsMap",
+          "documentation":"<p>Specify the key-value pairs for the tags that you want to attach to your knowledge base in this object.</p>"
+        }
+      }
+    },
+    "CreateKnowledgeBaseResponse":{
+      "type":"structure",
+      "required":["knowledgeBase"],
+      "members":{
+        "knowledgeBase":{
+          "shape":"KnowledgeBase",
+          "documentation":"<p>Contains details about the knowledge base.</p>"
+        }
+      }
+    },
+    "CreationMode":{
+      "type":"string",
+      "enum":[
+        "DEFAULT",
+        "OVERRIDDEN"
+      ]
+    },
+    "CustomControlMethod":{
+      "type":"string",
+      "enum":["RETURN_CONTROL"]
+    },
+    "DataDeletionPolicy":{
+      "type":"string",
+      "enum":[
+        "RETAIN",
+        "DELETE"
+      ]
+    },
+    "DataSource":{
+      "type":"structure",
+      "required":[
+        "createdAt",
+        "dataSourceConfiguration",
+        "dataSourceId",
+        "knowledgeBaseId",
+        "name",
+        "status",
+        "updatedAt"
+      ],
+      "members":{
+        "createdAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the data source was created.</p>"
+        },
+        "dataDeletionPolicy":{
+          "shape":"DataDeletionPolicy",
+          "documentation":"<p>The deletion policy for the data source.</p>"
+        },
+        "dataSourceConfiguration":{
+          "shape":"DataSourceConfiguration",
+          "documentation":"<p>Contains details about how the data source is stored.</p>"
+        },
+        "dataSourceId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the data source.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the data source.</p>"
+        },
+        "failureReasons":{
+          "shape":"FailureReasons",
+          "documentation":"<p>The details of the failure reasons related to the data source.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base to which the data source belongs.</p>"
+        },
+        "name":{
+          "shape":"Name",
+          "documentation":"<p>The name of the data source.</p>"
+        },
+        "serverSideEncryptionConfiguration":{
+          "shape":"ServerSideEncryptionConfiguration",
+          "documentation":"<p>Contains details about the configuration of the server-side encryption.</p>"
+        },
+        "status":{
+          "shape":"DataSourceStatus",
+          "documentation":"<p>The status of the data source. The following statuses are possible:</p> <ul> <li> <p>Available – The data source has been created and is ready for ingestion into the knowledge base.</p> </li> <li> <p>Deleting – The data source is being deleted.</p> </li> </ul>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the data source was last updated.</p>"
+        },
+        "vectorIngestionConfiguration":{
+          "shape":"VectorIngestionConfiguration",
+          "documentation":"<p>Contains details about how to ingest the documents in the data source.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about a data source.</p>"
+    },
+    "DataSourceConfiguration":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "s3Configuration":{
+          "shape":"S3DataSourceConfiguration",
+          "documentation":"<p>Contains details about the configuration of the S3 object containing the data source.</p>"
+        },
+        "type":{
+          "shape":"DataSourceType",
+          "documentation":"<p>The type of storage for the data source.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about how a data source is stored.</p>"
+    },
+    "DataSourceStatus":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "DELETING",
+        "DELETE_UNSUCCESSFUL"
+      ]
+    },
+    "DataSourceSummaries":{
+      "type":"list",
+      "member":{"shape":"DataSourceSummary"}
+    },
+    "DataSourceSummary":{
+      "type":"structure",
+      "required":[
+        "dataSourceId",
+        "knowledgeBaseId",
+        "name",
+        "status",
+        "updatedAt"
+      ],
+      "members":{
+        "dataSourceId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the data source.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the data source.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base to which the data source belongs.</p>"
+        },
+        "name":{
+          "shape":"Name",
+          "documentation":"<p>The name of the data source.</p>"
+        },
+        "status":{
+          "shape":"DataSourceStatus",
+          "documentation":"<p>The status of the data source.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the data source was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about a data source.</p>"
+    },
+    "DataSourceType":{
+      "type":"string",
+      "enum":["S3"]
+    },
+    "DateTimestamp":{
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
+    },
+    "DeleteAgentActionGroupRequest":{
+      "type":"structure",
+      "required":[
+        "actionGroupId",
+        "agentId",
+        "agentVersion"
+      ],
+      "members":{
+        "actionGroupId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the action group to delete.</p>",
+          "location":"uri",
+          "locationName":"actionGroupId"
+        },
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent that the action group belongs to.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "agentVersion":{
+          "shape":"DraftVersion",
+          "documentation":"<p>The version of the agent that the action group belongs to.</p>",
+          "location":"uri",
+          "locationName":"agentVersion"
+        },
+        "skipResourceInUseCheck":{
+          "shape":"Boolean",
+          "documentation":"<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>",
+          "location":"querystring",
+          "locationName":"skipResourceInUseCheck"
+        }
+      }
+    },
+    "DeleteAgentActionGroupResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteAgentAliasRequest":{
+      "type":"structure",
+      "required":[
+        "agentAliasId",
+        "agentId"
+      ],
+      "members":{
+        "agentAliasId":{
+          "shape":"AgentAliasId",
+          "documentation":"<p>The unique identifier of the alias to delete.</p>",
+          "location":"uri",
+          "locationName":"agentAliasId"
+        },
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent that the alias belongs to.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        }
+      }
+    },
+    "DeleteAgentAliasResponse":{
+      "type":"structure",
+      "required":[
+        "agentAliasId",
+        "agentAliasStatus",
+        "agentId"
+      ],
+      "members":{
+        "agentAliasId":{
+          "shape":"AgentAliasId",
+          "documentation":"<p>The unique identifier of the alias that was deleted.</p>"
+        },
+        "agentAliasStatus":{
+          "shape":"AgentAliasStatus",
+          "documentation":"<p>The status of the alias.</p>"
+        },
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent that the alias belongs to.</p>"
+        }
+      }
+    },
+    "DeleteAgentRequest":{
+      "type":"structure",
+      "required":["agentId"],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent to delete.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "skipResourceInUseCheck":{
+          "shape":"Boolean",
+          "documentation":"<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>",
+          "location":"querystring",
+          "locationName":"skipResourceInUseCheck"
+        }
+      }
+    },
+    "DeleteAgentResponse":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "agentStatus"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent that was deleted.</p>"
+        },
+        "agentStatus":{
+          "shape":"AgentStatus",
+          "documentation":"<p>The status of the agent.</p>"
+        }
+      }
+    },
+    "DeleteAgentVersionRequest":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "agentVersion"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent that the version belongs to.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "agentVersion":{
+          "shape":"NumericalVersion",
+          "documentation":"<p>The version of the agent to delete.</p>",
+          "location":"uri",
+          "locationName":"agentVersion"
+        },
+        "skipResourceInUseCheck":{
+          "shape":"Boolean",
+          "documentation":"<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>",
+          "location":"querystring",
+          "locationName":"skipResourceInUseCheck"
+        }
+      }
+    },
+    "DeleteAgentVersionResponse":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "agentStatus",
+        "agentVersion"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent that the version belongs to.</p>"
+        },
+        "agentStatus":{
+          "shape":"AgentStatus",
+          "documentation":"<p>The status of the agent version.</p>"
+        },
+        "agentVersion":{
+          "shape":"NumericalVersion",
+          "documentation":"<p>The version that was deleted.</p>"
+        }
+      }
+    },
+    "DeleteDataSourceRequest":{
+      "type":"structure",
+      "required":[
+        "dataSourceId",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "dataSourceId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the data source to delete.</p>",
+          "location":"uri",
+          "locationName":"dataSourceId"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base from which to delete the data source.</p>",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        }
+      }
+    },
+    "DeleteDataSourceResponse":{
+      "type":"structure",
+      "required":[
+        "dataSourceId",
+        "knowledgeBaseId",
+        "status"
+      ],
+      "members":{
+        "dataSourceId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the data source that was deleted.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base to which the data source that was deleted belonged.</p>"
+        },
+        "status":{
+          "shape":"DataSourceStatus",
+          "documentation":"<p>The status of the data source.</p>"
+        }
+      }
+    },
+    "DeleteKnowledgeBaseRequest":{
+      "type":"structure",
+      "required":["knowledgeBaseId"],
+      "members":{
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base to delete.</p>",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        }
+      }
+    },
+    "DeleteKnowledgeBaseResponse":{
+      "type":"structure",
+      "required":[
+        "knowledgeBaseId",
+        "status"
+      ],
+      "members":{
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base that was deleted.</p>"
+        },
+        "status":{
+          "shape":"KnowledgeBaseStatus",
+          "documentation":"<p>The status of the knowledge base and whether it has been successfully deleted.</p>"
+        }
+      }
+    },
+    "Description":{
+      "type":"string",
+      "max":200,
+      "min":1
+    },
+    "DisassociateAgentKnowledgeBaseRequest":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "agentVersion",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent from which to disassociate the knowledge base.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "agentVersion":{
+          "shape":"DraftVersion",
+          "documentation":"<p>The version of the agent from which to disassociate the knowledge base.</p>",
+          "location":"uri",
+          "locationName":"agentVersion"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base to disassociate.</p>",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        }
+      }
+    },
+    "DisassociateAgentKnowledgeBaseResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DraftVersion":{
+      "type":"string",
+      "max":5,
+      "min":5,
+      "pattern":"^DRAFT$"
+    },
+    "FailureReason":{
+      "type":"string",
+      "max":2048,
+      "min":0
+    },
+    "FailureReasons":{
+      "type":"list",
+      "member":{"shape":"FailureReason"},
+      "max":2048,
+      "min":0
+    },
+    "FieldName":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^.*$"
+    },
+    "FixedSizeChunkingConfiguration":{
+      "type":"structure",
+      "required":[
+        "maxTokens",
+        "overlapPercentage"
+      ],
+      "members":{
+        "maxTokens":{
+          "shape":"FixedSizeChunkingConfigurationMaxTokensInteger",
+          "documentation":"<p>The maximum number of tokens to include in a chunk.</p>"
+        },
+        "overlapPercentage":{
+          "shape":"FixedSizeChunkingConfigurationOverlapPercentageInteger",
+          "documentation":"<p>The percentage of overlap between adjacent chunks of a data source.</p>"
+        }
+      },
+      "documentation":"<p>Configurations for when you choose fixed-size chunking. If you set the <code>chunkingStrategy</code> as <code>NONE</code>, exclude this field.</p>"
+    },
+    "FixedSizeChunkingConfigurationMaxTokensInteger":{
+      "type":"integer",
+      "box":true,
+      "min":1
+    },
+    "FixedSizeChunkingConfigurationOverlapPercentageInteger":{
+      "type":"integer",
+      "box":true,
+      "max":99,
+      "min":1
+    },
+    "Function":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "description":{
+          "shape":"FunctionDescription",
+          "documentation":"<p>A description of the function and its purpose.</p>"
+        },
+        "name":{
+          "shape":"Name",
+          "documentation":"<p>A name for the function.</p>"
+        },
+        "parameters":{
+          "shape":"ParameterMap",
+          "documentation":"<p>The parameters that the agent elicits from the user to fulfill the function.</p>"
+        }
+      },
+      "documentation":"<p>Defines parameters that the agent needs to invoke from the user to complete the function. Corresponds to an action in an action group.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_RequestSyntax\">CreateAgentActionGroup request</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_ResponseSyntax\">CreateAgentActionGroup response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_RequestSyntax\">UpdateAgentActionGroup request</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_ResponseSyntax\">UpdateAgentActionGroup response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetAgentActionGroup.html#API_agent_GetAgentActionGroup_ResponseSyntax\">GetAgentActionGroup response</a> </p> </li> </ul>"
+    },
+    "FunctionDescription":{
+      "type":"string",
+      "max":1200,
+      "min":1
+    },
+    "FunctionSchema":{
+      "type":"structure",
+      "members":{
+        "functions":{
+          "shape":"Functions",
+          "documentation":"<p>A list of functions that each define an action in the action group.</p>"
+        }
+      },
+      "documentation":"<p>Defines functions that each define parameters that the agent needs to invoke from the user. Each function represents an action in an action group.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_RequestSyntax\">CreateAgentActionGroup request</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_ResponseSyntax\">CreateAgentActionGroup response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_RequestSyntax\">UpdateAgentActionGroup request</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_ResponseSyntax\">UpdateAgentActionGroup response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetAgentActionGroup.html#API_agent_GetAgentActionGroup_ResponseSyntax\">GetAgentActionGroup response</a> </p> </li> </ul>",
+      "union":true
+    },
+    "Functions":{
+      "type":"list",
+      "member":{"shape":"Function"}
+    },
+    "GetAgentActionGroupRequest":{
+      "type":"structure",
+      "required":[
+        "actionGroupId",
+        "agentId",
+        "agentVersion"
+      ],
+      "members":{
+        "actionGroupId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the action group for which to get information.</p>",
+          "location":"uri",
+          "locationName":"actionGroupId"
+        },
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent that the action group belongs to.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "agentVersion":{
+          "shape":"Version",
+          "documentation":"<p>The version of the agent that the action group belongs to.</p>",
+          "location":"uri",
+          "locationName":"agentVersion"
+        }
+      }
+    },
+    "GetAgentActionGroupResponse":{
+      "type":"structure",
+      "required":["agentActionGroup"],
+      "members":{
+        "agentActionGroup":{
+          "shape":"AgentActionGroup",
+          "documentation":"<p>Contains details about the action group.</p>"
+        }
+      }
+    },
+    "GetAgentAliasRequest":{
+      "type":"structure",
+      "required":[
+        "agentAliasId",
+        "agentId"
+      ],
+      "members":{
+        "agentAliasId":{
+          "shape":"AgentAliasId",
+          "documentation":"<p>The unique identifier of the alias for which to get information.</p>",
+          "location":"uri",
+          "locationName":"agentAliasId"
+        },
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent to which the alias to get information belongs.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        }
+      }
+    },
+    "GetAgentAliasResponse":{
+      "type":"structure",
+      "required":["agentAlias"],
+      "members":{
+        "agentAlias":{
+          "shape":"AgentAlias",
+          "documentation":"<p>Contains information about the alias.</p>"
+        }
+      }
+    },
+    "GetAgentKnowledgeBaseRequest":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "agentVersion",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent with which the knowledge base is associated.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "agentVersion":{
+          "shape":"Version",
+          "documentation":"<p>The version of the agent with which the knowledge base is associated.</p>",
+          "location":"uri",
+          "locationName":"agentVersion"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base associated with the agent.</p>",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        }
+      }
+    },
+    "GetAgentKnowledgeBaseResponse":{
+      "type":"structure",
+      "required":["agentKnowledgeBase"],
+      "members":{
+        "agentKnowledgeBase":{
+          "shape":"AgentKnowledgeBase",
+          "documentation":"<p>Contains details about a knowledge base attached to an agent.</p>"
+        }
+      }
+    },
+    "GetAgentRequest":{
+      "type":"structure",
+      "required":["agentId"],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        }
+      }
+    },
+    "GetAgentResponse":{
+      "type":"structure",
+      "required":["agent"],
+      "members":{
+        "agent":{
+          "shape":"Agent",
+          "documentation":"<p>Contains details about the agent.</p>"
+        }
+      }
+    },
+    "GetAgentVersionRequest":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "agentVersion"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "agentVersion":{
+          "shape":"NumericalVersion",
+          "documentation":"<p>The version of the agent.</p>",
+          "location":"uri",
+          "locationName":"agentVersion"
+        }
+      }
+    },
+    "GetAgentVersionResponse":{
+      "type":"structure",
+      "required":["agentVersion"],
+      "members":{
+        "agentVersion":{
+          "shape":"AgentVersion",
+          "documentation":"<p>Contains details about the version of the agent.</p>"
+        }
+      }
+    },
+    "GetDataSourceRequest":{
+      "type":"structure",
+      "required":[
+        "dataSourceId",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "dataSourceId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the data source.</p>",
+          "location":"uri",
+          "locationName":"dataSourceId"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base that the data source was added to.</p>",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        }
+      }
+    },
+    "GetDataSourceResponse":{
+      "type":"structure",
+      "required":["dataSource"],
+      "members":{
+        "dataSource":{
+          "shape":"DataSource",
+          "documentation":"<p>Contains details about the data source.</p>"
+        }
+      }
+    },
+    "GetIngestionJobRequest":{
+      "type":"structure",
+      "required":[
+        "dataSourceId",
+        "ingestionJobId",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "dataSourceId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the data source in the ingestion job.</p>",
+          "location":"uri",
+          "locationName":"dataSourceId"
+        },
+        "ingestionJobId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the ingestion job.</p>",
+          "location":"uri",
+          "locationName":"ingestionJobId"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base for which the ingestion job applies.</p>",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        }
+      }
+    },
+    "GetIngestionJobResponse":{
+      "type":"structure",
+      "required":["ingestionJob"],
+      "members":{
+        "ingestionJob":{
+          "shape":"IngestionJob",
+          "documentation":"<p>Contains details about the ingestion job.</p>"
+        }
+      }
+    },
+    "GetKnowledgeBaseRequest":{
+      "type":"structure",
+      "required":["knowledgeBaseId"],
+      "members":{
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base for which to get information.</p>",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        }
+      }
+    },
+    "GetKnowledgeBaseResponse":{
+      "type":"structure",
+      "required":["knowledgeBase"],
+      "members":{
+        "knowledgeBase":{
+          "shape":"KnowledgeBase",
+          "documentation":"<p>Contains details about the knowledge base.</p>"
+        }
+      }
+    },
+    "Id":{
+      "type":"string",
+      "pattern":"^[0-9a-zA-Z]{10}$"
+    },
+    "InferenceConfiguration":{
+      "type":"structure",
+      "members":{
+        "maximumLength":{
+          "shape":"MaximumLength",
+          "documentation":"<p>The maximum number of tokens to allow in the generated response.</p>"
+        },
+        "stopSequences":{
+          "shape":"StopSequences",
+          "documentation":"<p>A list of stop sequences. A stop sequence is a sequence of characters that causes the model to stop generating the response.</p>"
+        },
+        "temperature":{
+          "shape":"Temperature",
+          "documentation":"<p>The likelihood of the model selecting higher-probability options while generating a response. A lower value makes the model more likely to choose higher-probability options, while a higher value makes the model more likely to choose lower-probability options.</p>"
+        },
+        "topK":{
+          "shape":"TopK",
+          "documentation":"<p>While generating a response, the model determines the probability of the following token at each point of generation. The value that you set for <code>topK</code> is the number of most-likely candidates from which the model chooses the next token in the sequence. For example, if you set <code>topK</code> to 50, the model selects the next token from among the top 50 most likely choices.</p>"
+        },
+        "topP":{
+          "shape":"TopP",
+          "documentation":"<p>While generating a response, the model determines the probability of the following token at each point of generation. The value that you set for <code>Top P</code> determines the number of most-likely candidates from which the model chooses the next token in the sequence. For example, if you set <code>topP</code> to 80, the model only selects the next token from the top 80% of the probability distribution of next tokens.</p>"
+        }
+      },
+      "documentation":"<p>Contains inference parameters to use when the agent invokes a foundation model in the part of the agent sequence defined by the <code>promptType</code>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters for foundation models</a>.</p>"
+    },
+    "IngestionJob":{
+      "type":"structure",
+      "required":[
+        "dataSourceId",
+        "ingestionJobId",
+        "knowledgeBaseId",
+        "startedAt",
+        "status",
+        "updatedAt"
+      ],
+      "members":{
+        "dataSourceId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the ingested data source.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the ingestion job.</p>"
+        },
+        "failureReasons":{
+          "shape":"FailureReasons",
+          "documentation":"<p>A list of reasons that the ingestion job failed.</p>"
+        },
+        "ingestionJobId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the ingestion job.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base to which the data source is being added.</p>"
+        },
+        "startedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the ingestion job started.</p>"
+        },
+        "statistics":{
+          "shape":"IngestionJobStatistics",
+          "documentation":"<p>Contains statistics about the ingestion job.</p>"
+        },
+        "status":{
+          "shape":"IngestionJobStatus",
+          "documentation":"<p>The status of the ingestion job.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the ingestion job was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about an ingestion job, which converts a data source to embeddings for a vector store in knowledge base.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_StartIngestionJob.html#API_agent_StartIngestionJob_ResponseSyntax\">StartIngestionJob response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetIngestionJob.html#API_agent_GetIngestionJob_ResponseSyntax\">GetIngestionJob response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_ListIngestionJobs.html#API_agent_ListIngestionJobs_ResponseSyntax\">ListIngestionJob response</a> </p> </li> </ul>"
+    },
+    "IngestionJobFilter":{
+      "type":"structure",
+      "required":[
+        "attribute",
+        "operator",
+        "values"
+      ],
+      "members":{
+        "attribute":{
+          "shape":"IngestionJobFilterAttribute",
+          "documentation":"<p>The attribute by which to filter the results.</p>"
+        },
+        "operator":{
+          "shape":"IngestionJobFilterOperator",
+          "documentation":"<p>The operation to carry out between the attribute and the values.</p>"
+        },
+        "values":{
+          "shape":"IngestionJobFilterValues",
+          "documentation":"<p>A list of values for the attribute.</p>"
+        }
+      },
+      "documentation":"<p>Defines a filter by which to filter the results.</p>"
+    },
+    "IngestionJobFilterAttribute":{
+      "type":"string",
+      "enum":["STATUS"]
+    },
+    "IngestionJobFilterOperator":{
+      "type":"string",
+      "enum":["EQ"]
+    },
+    "IngestionJobFilterValue":{
+      "type":"string",
+      "max":100,
+      "min":0,
+      "pattern":"^.*$"
+    },
+    "IngestionJobFilterValues":{
+      "type":"list",
+      "member":{"shape":"IngestionJobFilterValue"},
+      "max":10,
+      "min":0
+    },
+    "IngestionJobFilters":{
+      "type":"list",
+      "member":{"shape":"IngestionJobFilter"},
+      "max":1,
+      "min":1
+    },
+    "IngestionJobSortBy":{
+      "type":"structure",
+      "required":[
+        "attribute",
+        "order"
+      ],
+      "members":{
+        "attribute":{
+          "shape":"IngestionJobSortByAttribute",
+          "documentation":"<p>The attribute by which to sort the results.</p>"
+        },
+        "order":{
+          "shape":"SortOrder",
+          "documentation":"<p>The order by which to sort the results.</p>"
+        }
+      },
+      "documentation":"<p>Parameters by which to sort the results.</p>"
+    },
+    "IngestionJobSortByAttribute":{
+      "type":"string",
+      "enum":[
+        "STATUS",
+        "STARTED_AT"
+      ]
+    },
+    "IngestionJobStatistics":{
+      "type":"structure",
+      "members":{
+        "numberOfDocumentsDeleted":{
+          "shape":"PrimitiveLong",
+          "documentation":"<p>The number of source documents that was deleted.</p>"
+        },
+        "numberOfDocumentsFailed":{
+          "shape":"PrimitiveLong",
+          "documentation":"<p>The number of source documents that failed to be ingested.</p>"
+        },
+        "numberOfDocumentsScanned":{
+          "shape":"PrimitiveLong",
+          "documentation":"<p>The total number of source documents that were scanned. Includes new, updated, and unchanged documents.</p>"
+        },
+        "numberOfMetadataDocumentsModified":{
+          "shape":"PrimitiveLong",
+          "documentation":"<p>The number of metadata files that were updated or deleted.</p>"
+        },
+        "numberOfMetadataDocumentsScanned":{
+          "shape":"PrimitiveLong",
+          "documentation":"<p>The total number of metadata files that were scanned. Includes new, updated, and unchanged files.</p>"
+        },
+        "numberOfModifiedDocumentsIndexed":{
+          "shape":"PrimitiveLong",
+          "documentation":"<p>The number of modified source documents in the data source that were successfully indexed.</p>"
+        },
+        "numberOfNewDocumentsIndexed":{
+          "shape":"PrimitiveLong",
+          "documentation":"<p>The number of new source documents in the data source that were successfully indexed.</p>"
+        }
+      },
+      "documentation":"<p>Contains the statistics for the ingestion job.</p>"
+    },
+    "IngestionJobStatus":{
+      "type":"string",
+      "enum":[
+        "STARTING",
+        "IN_PROGRESS",
+        "COMPLETE",
+        "FAILED"
+      ]
+    },
+    "IngestionJobSummaries":{
+      "type":"list",
+      "member":{"shape":"IngestionJobSummary"}
+    },
+    "IngestionJobSummary":{
+      "type":"structure",
+      "required":[
+        "dataSourceId",
+        "ingestionJobId",
+        "knowledgeBaseId",
+        "startedAt",
+        "status",
+        "updatedAt"
+      ],
+      "members":{
+        "dataSourceId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the data source in the ingestion job.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the ingestion job.</p>"
+        },
+        "ingestionJobId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the ingestion job.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base to which the data source is added.</p>"
+        },
+        "startedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the ingestion job was started.</p>"
+        },
+        "statistics":{
+          "shape":"IngestionJobStatistics",
+          "documentation":"<p>Contains statistics for the ingestion job.</p>"
+        },
+        "status":{
+          "shape":"IngestionJobStatus",
+          "documentation":"<p>The status of the ingestion job.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the ingestion job was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about an ingestion job.</p>"
+    },
+    "Instruction":{
+      "type":"string",
+      "max":1200,
+      "min":40,
+      "sensitive":true
+    },
+    "InternalServerException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"NonBlankString"}
+      },
+      "documentation":"<p>An internal server error occurred. Retry your request.</p>",
+      "error":{"httpStatusCode":500},
+      "exception":true,
+      "fault":true
+    },
+    "KmsKeyArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^arn:aws(|-cn|-us-gov):kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}$"
+    },
+    "KnowledgeBase":{
+      "type":"structure",
+      "required":[
+        "createdAt",
+        "knowledgeBaseArn",
+        "knowledgeBaseConfiguration",
+        "knowledgeBaseId",
+        "name",
+        "roleArn",
+        "status",
+        "storageConfiguration",
+        "updatedAt"
+      ],
+      "members":{
+        "createdAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the knowledge base was created.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the knowledge base.</p>"
+        },
+        "failureReasons":{
+          "shape":"FailureReasons",
+          "documentation":"<p>A list of reasons that the API operation on the knowledge base failed.</p>"
+        },
+        "knowledgeBaseArn":{
+          "shape":"KnowledgeBaseArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the knowledge base.</p>"
+        },
+        "knowledgeBaseConfiguration":{
+          "shape":"KnowledgeBaseConfiguration",
+          "documentation":"<p>Contains details about the embeddings configuration of the knowledge base.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base.</p>"
+        },
+        "name":{
+          "shape":"Name",
+          "documentation":"<p>The name of the knowledge base.</p>"
+        },
+        "roleArn":{
+          "shape":"KnowledgeBaseRoleArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the IAM role with permissions to invoke API operations on the knowledge base.</p>"
+        },
+        "status":{
+          "shape":"KnowledgeBaseStatus",
+          "documentation":"<p>The status of the knowledge base. The following statuses are possible:</p> <ul> <li> <p>CREATING – The knowledge base is being created.</p> </li> <li> <p>ACTIVE – The knowledge base is ready to be queried.</p> </li> <li> <p>DELETING – The knowledge base is being deleted.</p> </li> <li> <p>UPDATING – The knowledge base is being updated.</p> </li> <li> <p>FAILED – The knowledge base API operation failed.</p> </li> </ul>"
+        },
+        "storageConfiguration":{
+          "shape":"StorageConfiguration",
+          "documentation":"<p>Contains details about the storage configuration of the knowledge base.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the knowledge base was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Contains information about a knowledge base.</p>"
+    },
+    "KnowledgeBaseArn":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"^arn:aws(|-cn|-us-gov):bedrock:[a-zA-Z0-9-]*:[0-9]{12}:knowledge-base/[0-9a-zA-Z]+$"
+    },
+    "KnowledgeBaseConfiguration":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "type":{
+          "shape":"KnowledgeBaseType",
+          "documentation":"<p>The type of data that the data source is converted into for the knowledge base.</p>"
+        },
+        "vectorKnowledgeBaseConfiguration":{
+          "shape":"VectorKnowledgeBaseConfiguration",
+          "documentation":"<p>Contains details about the embeddings model that'sused to convert the data source.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about the embeddings configuration of the knowledge base.</p>"
+    },
+    "KnowledgeBaseRoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^arn:aws(-[^:]+)?:iam::([0-9]{12})?:role/.+$"
+    },
+    "KnowledgeBaseState":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "KnowledgeBaseStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "DELETING",
+        "UPDATING",
+        "FAILED",
+        "DELETE_UNSUCCESSFUL"
+      ]
+    },
+    "KnowledgeBaseStorageType":{
+      "type":"string",
+      "enum":[
+        "OPENSEARCH_SERVERLESS",
+        "PINECONE",
+        "REDIS_ENTERPRISE_CLOUD",
+        "RDS"
+      ]
+    },
+    "KnowledgeBaseSummaries":{
+      "type":"list",
+      "member":{"shape":"KnowledgeBaseSummary"}
+    },
+    "KnowledgeBaseSummary":{
+      "type":"structure",
+      "required":[
+        "knowledgeBaseId",
+        "name",
+        "status",
+        "updatedAt"
+      ],
+      "members":{
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>The description of the knowledge base.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base.</p>"
+        },
+        "name":{
+          "shape":"Name",
+          "documentation":"<p>The name of the knowledge base.</p>"
+        },
+        "status":{
+          "shape":"KnowledgeBaseStatus",
+          "documentation":"<p>The status of the knowledge base.</p>"
+        },
+        "updatedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the knowledge base was last updated.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about a knowledge base.</p>"
+    },
+    "KnowledgeBaseType":{
+      "type":"string",
+      "enum":["VECTOR"]
+    },
+    "LambdaArn":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_\\.]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?$"
+    },
+    "ListAgentActionGroupsRequest":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "agentVersion"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "agentVersion":{
+          "shape":"Version",
+          "documentation":"<p>The version of the agent.</p>",
+          "location":"uri",
+          "locationName":"agentVersion"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "documentation":"<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListAgentActionGroupsResponse":{
+      "type":"structure",
+      "required":["actionGroupSummaries"],
+      "members":{
+        "actionGroupSummaries":{
+          "shape":"ActionGroupSummaries",
+          "documentation":"<p>A list of objects, each of which contains information about an action group.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListAgentAliasesRequest":{
+      "type":"structure",
+      "required":["agentId"],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "documentation":"<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListAgentAliasesResponse":{
+      "type":"structure",
+      "required":["agentAliasSummaries"],
+      "members":{
+        "agentAliasSummaries":{
+          "shape":"AgentAliasSummaries",
+          "documentation":"<p>A list of objects, each of which contains information about an alias of the agent.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListAgentKnowledgeBasesRequest":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "agentVersion"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent for which to return information about knowledge bases associated with it.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "agentVersion":{
+          "shape":"Version",
+          "documentation":"<p>The version of the agent for which to return information about knowledge bases associated with it.</p>",
+          "location":"uri",
+          "locationName":"agentVersion"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "documentation":"<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListAgentKnowledgeBasesResponse":{
+      "type":"structure",
+      "required":["agentKnowledgeBaseSummaries"],
+      "members":{
+        "agentKnowledgeBaseSummaries":{
+          "shape":"AgentKnowledgeBaseSummaries",
+          "documentation":"<p>A list of objects, each of which contains information about a knowledge base associated with the agent.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListAgentVersionsRequest":{
+      "type":"structure",
+      "required":["agentId"],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "documentation":"<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListAgentVersionsResponse":{
+      "type":"structure",
+      "required":["agentVersionSummaries"],
+      "members":{
+        "agentVersionSummaries":{
+          "shape":"AgentVersionSummaries",
+          "documentation":"<p>A list of objects, each of which contains information about a version of the agent.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListAgentsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"MaxResults",
+          "documentation":"<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListAgentsResponse":{
+      "type":"structure",
+      "required":["agentSummaries"],
+      "members":{
+        "agentSummaries":{
+          "shape":"AgentSummaries",
+          "documentation":"<p>A list of objects, each of which contains information about an agent.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListDataSourcesRequest":{
+      "type":"structure",
+      "required":["knowledgeBaseId"],
+      "members":{
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base for which to return a list of information.</p>",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "documentation":"<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListDataSourcesResponse":{
+      "type":"structure",
+      "required":["dataSourceSummaries"],
+      "members":{
+        "dataSourceSummaries":{
+          "shape":"DataSourceSummaries",
+          "documentation":"<p>A list of objects, each of which contains information about a data source.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListIngestionJobsRequest":{
+      "type":"structure",
+      "required":[
+        "dataSourceId",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "dataSourceId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the data source for which to return ingestion jobs.</p>",
+          "location":"uri",
+          "locationName":"dataSourceId"
+        },
+        "filters":{
+          "shape":"IngestionJobFilters",
+          "documentation":"<p>Contains a definition of a filter for which to filter the results.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base for which to return ingestion jobs.</p>",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "documentation":"<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>"
+        },
+        "sortBy":{
+          "shape":"IngestionJobSortBy",
+          "documentation":"<p>Contains details about how to sort the results.</p>"
+        }
+      }
+    },
+    "ListIngestionJobsResponse":{
+      "type":"structure",
+      "required":["ingestionJobSummaries"],
+      "members":{
+        "ingestionJobSummaries":{
+          "shape":"IngestionJobSummaries",
+          "documentation":"<p>A list of objects, each of which contains information about an ingestion job.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListKnowledgeBasesRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"MaxResults",
+          "documentation":"<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListKnowledgeBasesResponse":{
+      "type":"structure",
+      "required":["knowledgeBaseSummaries"],
+      "members":{
+        "knowledgeBaseSummaries":{
+          "shape":"KnowledgeBaseSummaries",
+          "documentation":"<p>A list of objects, each of which contains information about a knowledge base.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>"
+        }
+      }
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"TaggableResourcesArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the resource for which to list tags.</p>",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "tags":{
+          "shape":"TagsMap",
+          "documentation":"<p>The key-value pairs for the tags associated with the resource.</p>"
+        }
+      }
+    },
+    "MaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":1000,
+      "min":1
+    },
+    "MaximumLength":{
+      "type":"integer",
+      "box":true,
+      "max":4096,
+      "min":0
+    },
+    "ModelIdentifier":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}(([:][a-z0-9-]{1,63}){0,2})?/[a-z0-9]{12})|(:foundation-model/([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2})))|(([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2}))|(([0-9a-zA-Z][_-]?)+)$"
+    },
+    "Name":{
+      "type":"string",
+      "pattern":"^([0-9a-zA-Z][_-]?){1,100}$"
+    },
+    "NextToken":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^\\S*$"
+    },
+    "NonBlankString":{
+      "type":"string",
+      "pattern":"^[\\s\\S]+$"
+    },
+    "NumericalVersion":{
+      "type":"string",
+      "pattern":"^[0-9]{1,5}$"
+    },
+    "OpenSearchServerlessCollectionArn":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^arn:aws:aoss:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:collection/[a-z0-9-]{3,32}$"
+    },
+    "OpenSearchServerlessConfiguration":{
+      "type":"structure",
+      "required":[
+        "collectionArn",
+        "fieldMapping",
+        "vectorIndexName"
+      ],
+      "members":{
+        "collectionArn":{
+          "shape":"OpenSearchServerlessCollectionArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the OpenSearch Service vector store.</p>"
+        },
+        "fieldMapping":{
+          "shape":"OpenSearchServerlessFieldMapping",
+          "documentation":"<p>Contains the names of the fields to which to map information about the vector store.</p>"
+        },
+        "vectorIndexName":{
+          "shape":"OpenSearchServerlessIndexName",
+          "documentation":"<p>The name of the vector store.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about the storage configuration of the knowledge base in Amazon OpenSearch Service. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html\">Create a vector index in Amazon OpenSearch Service</a>.</p>"
+    },
+    "OpenSearchServerlessFieldMapping":{
+      "type":"structure",
+      "required":[
+        "metadataField",
+        "textField",
+        "vectorField"
+      ],
+      "members":{
+        "metadataField":{
+          "shape":"FieldName",
+          "documentation":"<p>The name of the field in which Amazon Bedrock stores metadata about the vector store.</p>"
+        },
+        "textField":{
+          "shape":"FieldName",
+          "documentation":"<p>The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.</p>"
+        },
+        "vectorField":{
+          "shape":"FieldName",
+          "documentation":"<p>The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.</p>"
+        }
+      },
+      "documentation":"<p>Contains the names of the fields to which to map information about the vector store.</p>"
+    },
+    "OpenSearchServerlessIndexName":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^.*$"
+    },
+    "ParameterDescription":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
+    "ParameterDetail":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "description":{
+          "shape":"ParameterDescription",
+          "documentation":"<p>A description of the parameter. Helps the foundation model determine how to elicit the parameters from the user.</p>"
+        },
+        "required":{
+          "shape":"Boolean",
+          "documentation":"<p>Whether the parameter is required for the agent to complete the function for action group invocation.</p>"
+        },
+        "type":{
+          "shape":"Type",
+          "documentation":"<p>The data type of the parameter.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about a parameter in a function for an action group.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_RequestSyntax\">CreateAgentActionGroup request</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_ResponseSyntax\">CreateAgentActionGroup response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_RequestSyntax\">UpdateAgentActionGroup request</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_ResponseSyntax\">UpdateAgentActionGroup response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetAgentActionGroup.html#API_agent_GetAgentActionGroup_ResponseSyntax\">GetAgentActionGroup response</a> </p> </li> </ul>"
+    },
+    "ParameterMap":{
+      "type":"map",
+      "key":{"shape":"Name"},
+      "value":{"shape":"ParameterDetail"}
+    },
+    "Payload":{
+      "type":"string",
+      "sensitive":true
+    },
+    "PineconeConfiguration":{
+      "type":"structure",
+      "required":[
+        "connectionString",
+        "credentialsSecretArn",
+        "fieldMapping"
+      ],
+      "members":{
+        "connectionString":{
+          "shape":"PineconeConnectionString",
+          "documentation":"<p>The endpoint URL for your index management page.</p>"
+        },
+        "credentialsSecretArn":{
+          "shape":"SecretArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that is linked to your Pinecone API key.</p>"
+        },
+        "fieldMapping":{
+          "shape":"PineconeFieldMapping",
+          "documentation":"<p>Contains the names of the fields to which to map information about the vector store.</p>"
+        },
+        "namespace":{
+          "shape":"PineconeNamespace",
+          "documentation":"<p>The namespace to be used to write new data to your database.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about the storage configuration of the knowledge base in Pinecone. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-pinecone.html\">Create a vector index in Pinecone</a>.</p>"
+    },
+    "PineconeConnectionString":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^.*$"
+    },
+    "PineconeFieldMapping":{
+      "type":"structure",
+      "required":[
+        "metadataField",
+        "textField"
+      ],
+      "members":{
+        "metadataField":{
+          "shape":"FieldName",
+          "documentation":"<p>The name of the field in which Amazon Bedrock stores metadata about the vector store.</p>"
+        },
+        "textField":{
+          "shape":"FieldName",
+          "documentation":"<p>The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.</p>"
+        }
+      },
+      "documentation":"<p>Contains the names of the fields to which to map information about the vector store.</p>"
+    },
+    "PineconeNamespace":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^.*$"
+    },
+    "PrepareAgentRequest":{
+      "type":"structure",
+      "required":["agentId"],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent for which to create a <code>DRAFT</code> version.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        }
+      }
+    },
+    "PrepareAgentResponse":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "agentStatus",
+        "agentVersion",
+        "preparedAt"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent for which the <code>DRAFT</code> version was created.</p>"
+        },
+        "agentStatus":{
+          "shape":"AgentStatus",
+          "documentation":"<p>The status of the <code>DRAFT</code> version and whether it is ready for use.</p>"
+        },
+        "agentVersion":{
+          "shape":"Version",
+          "documentation":"<p>The version of the agent.</p>"
+        },
+        "preparedAt":{
+          "shape":"DateTimestamp",
+          "documentation":"<p>The time at which the <code>DRAFT</code> version of the agent was last prepared.</p>"
+        }
+      }
+    },
+    "PrimitiveLong":{"type":"long"},
+    "PromptConfiguration":{
+      "type":"structure",
+      "members":{
+        "basePromptTemplate":{
+          "shape":"BasePromptTemplate",
+          "documentation":"<p>Defines the prompt template with which to replace the default prompt template. You can use placeholder variables in the base prompt template to customize the prompt. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-placeholders.html\">Prompt template placeholder variables</a>.</p>"
+        },
+        "inferenceConfiguration":{
+          "shape":"InferenceConfiguration",
+          "documentation":"<p>Contains inference parameters to use when the agent invokes a foundation model in the part of the agent sequence defined by the <code>promptType</code>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters for foundation models</a>.</p>"
+        },
+        "parserMode":{
+          "shape":"CreationMode",
+          "documentation":"<p>Specifies whether to override the default parser Lambda function when parsing the raw foundation model output in the part of the agent sequence defined by the <code>promptType</code>. If you set the field as <code>OVERRIDEN</code>, the <code>overrideLambda</code> field in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html\">PromptOverrideConfiguration</a> must be specified with the ARN of a Lambda function.</p>"
+        },
+        "promptCreationMode":{
+          "shape":"CreationMode",
+          "documentation":"<p>Specifies whether to override the default prompt template for this <code>promptType</code>. Set this value to <code>OVERRIDDEN</code> to use the prompt that you provide in the <code>basePromptTemplate</code>. If you leave it as <code>DEFAULT</code>, the agent uses a default prompt template.</p>"
+        },
+        "promptState":{
+          "shape":"PromptState",
+          "documentation":"<p>Specifies whether to allow the agent to carry out the step specified in the <code>promptType</code>. If you set this value to <code>DISABLED</code>, the agent skips that step. The default state for each <code>promptType</code> is as follows.</p> <ul> <li> <p> <code>PRE_PROCESSING</code> – <code>ENABLED</code> </p> </li> <li> <p> <code>ORCHESTRATION</code> – <code>ENABLED</code> </p> </li> <li> <p> <code>KNOWLEDGE_BASE_RESPONSE_GENERATION</code> – <code>ENABLED</code> </p> </li> <li> <p> <code>POST_PROCESSING</code> – <code>DISABLED</code> </p> </li> </ul>"
+        },
+        "promptType":{
+          "shape":"PromptType",
+          "documentation":"<p>The step in the agent sequence that this prompt configuration applies to.</p>"
+        }
+      },
+      "documentation":"<p>Contains configurations to override a prompt template in one part of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>"
+    },
+    "PromptConfigurations":{
+      "type":"list",
+      "member":{"shape":"PromptConfiguration"},
+      "max":10,
+      "min":0
+    },
+    "PromptOverrideConfiguration":{
+      "type":"structure",
+      "required":["promptConfigurations"],
+      "members":{
+        "overrideLambda":{
+          "shape":"LambdaArn",
+          "documentation":"<p>The ARN of the Lambda function to use when parsing the raw foundation model output in parts of the agent sequence. If you specify this field, at least one of the <code>promptConfigurations</code> must contain a <code>parserMode</code> value that is set to <code>OVERRIDDEN</code>.</p>"
+        },
+        "promptConfigurations":{
+          "shape":"PromptConfigurations",
+          "documentation":"<p>Contains configurations to override a prompt template in one part of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>"
+        }
+      },
+      "documentation":"<p>Contains configurations to override prompts in different parts of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>",
+      "sensitive":true
+    },
+    "PromptState":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "PromptType":{
+      "type":"string",
+      "enum":[
+        "PRE_PROCESSING",
+        "ORCHESTRATION",
+        "POST_PROCESSING",
+        "KNOWLEDGE_BASE_RESPONSE_GENERATION"
+      ]
+    },
+    "RdsArn":{
+      "type":"string",
+      "pattern":"^arn:aws(|-cn|-us-gov):rds:[a-zA-Z0-9-]*:[0-9]{12}:cluster:[a-zA-Z0-9-]{1,63}$"
+    },
+    "RdsConfiguration":{
+      "type":"structure",
+      "required":[
+        "credentialsSecretArn",
+        "databaseName",
+        "fieldMapping",
+        "resourceArn",
+        "tableName"
+      ],
+      "members":{
+        "credentialsSecretArn":{
+          "shape":"SecretArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that is linked to your Amazon RDS database.</p>"
+        },
+        "databaseName":{
+          "shape":"RdsDatabaseName",
+          "documentation":"<p>The name of your Amazon RDS database.</p>"
+        },
+        "fieldMapping":{
+          "shape":"RdsFieldMapping",
+          "documentation":"<p>Contains the names of the fields to which to map information about the vector store.</p>"
+        },
+        "resourceArn":{
+          "shape":"RdsArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the vector store.</p>"
+        },
+        "tableName":{
+          "shape":"RdsTableName",
+          "documentation":"<p>The name of the table in the database.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about the storage configuration of the knowledge base in Amazon RDS. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-rds.html\">Create a vector index in Amazon RDS</a>.</p>"
+    },
+    "RdsDatabaseName":{
+      "type":"string",
+      "max":63,
+      "min":0,
+      "pattern":"^[a-zA-Z0-9_\\-]+$"
+    },
+    "RdsFieldMapping":{
+      "type":"structure",
+      "required":[
+        "metadataField",
+        "primaryKeyField",
+        "textField",
+        "vectorField"
+      ],
+      "members":{
+        "metadataField":{
+          "shape":"ColumnName",
+          "documentation":"<p>The name of the field in which Amazon Bedrock stores metadata about the vector store.</p>"
+        },
+        "primaryKeyField":{
+          "shape":"ColumnName",
+          "documentation":"<p>The name of the field in which Amazon Bedrock stores the ID for each entry.</p>"
+        },
+        "textField":{
+          "shape":"ColumnName",
+          "documentation":"<p>The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.</p>"
+        },
+        "vectorField":{
+          "shape":"ColumnName",
+          "documentation":"<p>The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.</p>"
+        }
+      },
+      "documentation":"<p>Contains the names of the fields to which to map information about the vector store.</p>"
+    },
+    "RdsTableName":{
+      "type":"string",
+      "max":63,
+      "min":0,
+      "pattern":"^[a-zA-Z0-9_\\.\\-]+$"
+    },
+    "RecommendedAction":{
+      "type":"string",
+      "max":2048,
+      "min":0
+    },
+    "RecommendedActions":{
+      "type":"list",
+      "member":{"shape":"RecommendedAction"},
+      "max":2048,
+      "min":0
+    },
+    "RedisEnterpriseCloudConfiguration":{
+      "type":"structure",
+      "required":[
+        "credentialsSecretArn",
+        "endpoint",
+        "fieldMapping",
+        "vectorIndexName"
+      ],
+      "members":{
+        "credentialsSecretArn":{
+          "shape":"SecretArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that is linked to your Redis Enterprise Cloud database.</p>"
+        },
+        "endpoint":{
+          "shape":"RedisEnterpriseCloudEndpoint",
+          "documentation":"<p>The endpoint URL of the Redis Enterprise Cloud database.</p>"
+        },
+        "fieldMapping":{
+          "shape":"RedisEnterpriseCloudFieldMapping",
+          "documentation":"<p>Contains the names of the fields to which to map information about the vector store.</p>"
+        },
+        "vectorIndexName":{
+          "shape":"RedisEnterpriseCloudIndexName",
+          "documentation":"<p>The name of the vector index.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about the storage configuration of the knowledge base in Redis Enterprise Cloud. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html\">Create a vector index in Redis Enterprise Cloud</a>.</p>"
+    },
+    "RedisEnterpriseCloudEndpoint":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^.*$"
+    },
+    "RedisEnterpriseCloudFieldMapping":{
+      "type":"structure",
+      "required":[
+        "metadataField",
+        "textField",
+        "vectorField"
+      ],
+      "members":{
+        "metadataField":{
+          "shape":"FieldName",
+          "documentation":"<p>The name of the field in which Amazon Bedrock stores metadata about the vector store.</p>"
+        },
+        "textField":{
+          "shape":"FieldName",
+          "documentation":"<p>The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.</p>"
+        },
+        "vectorField":{
+          "shape":"FieldName",
+          "documentation":"<p>The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.</p>"
+        }
+      },
+      "documentation":"<p>Contains the names of the fields to which to map information about the vector store.</p>"
+    },
+    "RedisEnterpriseCloudIndexName":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^.*$"
+    },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"NonBlankString"}
+      },
+      "documentation":"<p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>",
+      "error":{
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "S3BucketArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^arn:aws(|-cn|-us-gov):s3:::[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$"
+    },
+    "S3BucketName":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$"
+    },
+    "S3DataSourceConfiguration":{
+      "type":"structure",
+      "required":["bucketArn"],
+      "members":{
+        "bucketArn":{
+          "shape":"S3BucketArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the bucket that contains the data source.</p>"
+        },
+        "bucketOwnerAccountId":{
+          "shape":"BucketOwnerAccountId",
+          "documentation":"<p>The account ID for the owner of the S3 bucket.</p>"
+        },
+        "inclusionPrefixes":{
+          "shape":"S3Prefixes",
+          "documentation":"<p>A list of S3 prefixes that define the object containing the data sources. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html\">Organizing objects using prefixes</a>.</p>"
+        }
+      },
+      "documentation":"<p>Contains information about the S3 configuration of the data source.</p>"
+    },
+    "S3Identifier":{
+      "type":"structure",
+      "members":{
+        "s3BucketName":{
+          "shape":"S3BucketName",
+          "documentation":"<p>The name of the S3 bucket.</p>"
+        },
+        "s3ObjectKey":{
+          "shape":"S3ObjectKey",
+          "documentation":"<p>The S3 object key containing the resource.</p>"
+        }
+      },
+      "documentation":"<p>Contains information about the S3 object containing the resource.</p>"
+    },
+    "S3ObjectKey":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^[\\.\\-\\!\\*\\_\\'\\(\\)a-zA-Z0-9][\\.\\-\\!\\*\\_\\'\\(\\)\\/a-zA-Z0-9]*$"
+    },
+    "S3Prefix":{
+      "type":"string",
+      "max":300,
+      "min":1
+    },
+    "S3Prefixes":{
+      "type":"list",
+      "member":{"shape":"S3Prefix"},
+      "max":1,
+      "min":1
+    },
+    "SecretArn":{
+      "type":"string",
+      "pattern":"^arn:aws(|-cn|-us-gov):secretsmanager:[a-z0-9-]{1,20}:([0-9]{12}|):secret:[a-zA-Z0-9!/_+=.@-]{1,512}$"
+    },
+    "ServerSideEncryptionConfiguration":{
+      "type":"structure",
+      "members":{
+        "kmsKeyArn":{
+          "shape":"KmsKeyArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the KMS key used to encrypt the resource.</p>"
+        }
+      },
+      "documentation":"<p>Contains the configuration for server-side encryption.</p>"
+    },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"NonBlankString"}
+      },
+      "documentation":"<p>The number of requests exceeds the service quota. Resubmit your request later.</p>",
+      "error":{
+        "httpStatusCode":402,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "SessionTTL":{
+      "type":"integer",
+      "box":true,
+      "max":3600,
+      "min":60
+    },
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASCENDING",
+        "DESCENDING"
+      ]
+    },
+    "StartIngestionJobRequest":{
+      "type":"structure",
+      "required":[
+        "dataSourceId",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "documentation":"<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+          "idempotencyToken":true
+        },
+        "dataSourceId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the data source to ingest.</p>",
+          "location":"uri",
+          "locationName":"dataSourceId"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>A description of the ingestion job.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base to which to add the data source.</p>",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        }
+      }
+    },
+    "StartIngestionJobResponse":{
+      "type":"structure",
+      "required":["ingestionJob"],
+      "members":{
+        "ingestionJob":{
+          "shape":"IngestionJob",
+          "documentation":"<p>An object containing information about the ingestion job.</p>"
+        }
+      }
+    },
+    "StopSequences":{
+      "type":"list",
+      "member":{"shape":"String"},
+      "max":4,
+      "min":0
+    },
+    "StorageConfiguration":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "opensearchServerlessConfiguration":{
+          "shape":"OpenSearchServerlessConfiguration",
+          "documentation":"<p>Contains the storage configuration of the knowledge base in Amazon OpenSearch Service.</p>"
+        },
+        "pineconeConfiguration":{
+          "shape":"PineconeConfiguration",
+          "documentation":"<p>Contains the storage configuration of the knowledge base in Pinecone.</p>"
+        },
+        "rdsConfiguration":{
+          "shape":"RdsConfiguration",
+          "documentation":"<p>Contains details about the storage configuration of the knowledge base in Amazon RDS. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-rds.html\">Create a vector index in Amazon RDS</a>.</p>"
+        },
+        "redisEnterpriseCloudConfiguration":{
+          "shape":"RedisEnterpriseCloudConfiguration",
+          "documentation":"<p>Contains the storage configuration of the knowledge base in Redis Enterprise Cloud.</p>"
+        },
+        "type":{
+          "shape":"KnowledgeBaseStorageType",
+          "documentation":"<p>The vector store service in which the knowledge base is stored.</p>"
+        }
+      },
+      "documentation":"<p>Contains the storage configuration of the knowledge base.</p>"
+    },
+    "String":{"type":"string"},
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\s._:/=+@-]*$"
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"TaggableResourcesArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the resource to tag.</p>",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tags":{
+          "shape":"TagsMap",
+          "documentation":"<p>An object containing key-value pairs that define the tags to attach to the resource.</p>"
+        }
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^[a-zA-Z0-9\\s._:/=+@-]*$"
+    },
+    "TaggableResourcesArn":{
+      "type":"string",
+      "max":1011,
+      "min":20,
+      "pattern":"(^arn:aws:bedrock:[a-zA-Z0-9-]+:/d{12}:(agent|agent-alias|knowledge-base)/[A-Z0-9]{10}(?:/[A-Z0-9]{10})?$)"
+    },
+    "TagsMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"}
+    },
+    "Temperature":{
+      "type":"float",
+      "box":true,
+      "max":1,
+      "min":0
+    },
+    "ThrottlingException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"NonBlankString"}
+      },
+      "documentation":"<p>The number of requests exceeds the limit. Resubmit your request later.</p>",
+      "error":{
+        "httpStatusCode":429,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TopK":{
+      "type":"integer",
+      "box":true,
+      "max":500,
+      "min":0
+    },
+    "TopP":{
+      "type":"float",
+      "box":true,
+      "max":1,
+      "min":0
+    },
+    "Type":{
+      "type":"string",
+      "enum":[
+        "string",
+        "number",
+        "integer",
+        "boolean",
+        "array"
+      ]
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"TaggableResourcesArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the resource from which to remove tags.</p>",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tagKeys":{
+          "shape":"TagKeyList",
+          "documentation":"<p>A list of keys of the tags to remove from the resource.</p>",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateAgentActionGroupRequest":{
+      "type":"structure",
+      "required":[
+        "actionGroupId",
+        "actionGroupName",
+        "agentId",
+        "agentVersion"
+      ],
+      "members":{
+        "actionGroupExecutor":{
+          "shape":"ActionGroupExecutor",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action.</p>"
+        },
+        "actionGroupId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the action group.</p>",
+          "location":"uri",
+          "locationName":"actionGroupId"
+        },
+        "actionGroupName":{
+          "shape":"Name",
+          "documentation":"<p>Specifies a new name for the action group.</p>"
+        },
+        "actionGroupState":{
+          "shape":"ActionGroupState",
+          "documentation":"<p>Specifies whether the action group is available for the agent to invoke or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>"
+        },
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent for which to update the action group.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "agentVersion":{
+          "shape":"DraftVersion",
+          "documentation":"<p>The unique identifier of the agent version for which to update the action group.</p>",
+          "location":"uri",
+          "locationName":"agentVersion"
+        },
+        "apiSchema":{
+          "shape":"APISchema",
+          "documentation":"<p>Contains either details about the S3 object containing the OpenAPI schema for the action group or the JSON or YAML-formatted payload defining the schema. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html\">Action group OpenAPI schemas</a>.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>Specifies a new name for the action group.</p>"
+        },
+        "functionSchema":{
+          "shape":"FunctionSchema",
+          "documentation":"<p>Contains details about the function schema for the action group or the JSON or YAML-formatted payload defining the schema.</p>"
+        },
+        "parentActionGroupSignature":{
+          "shape":"ActionGroupSignature",
+          "documentation":"<p>To allow your agent to request the user for additional information when trying to complete a task, set this field to <code>AMAZON.UserInput</code>. You must leave the <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields blank for this action group.</p> <p>During orchestration, if your agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>"
+        }
+      }
+    },
+    "UpdateAgentActionGroupResponse":{
+      "type":"structure",
+      "required":["agentActionGroup"],
+      "members":{
+        "agentActionGroup":{
+          "shape":"AgentActionGroup",
+          "documentation":"<p>Contains details about the action group that was updated.</p>"
+        }
+      }
+    },
+    "UpdateAgentAliasRequest":{
+      "type":"structure",
+      "required":[
+        "agentAliasId",
+        "agentAliasName",
+        "agentId"
+      ],
+      "members":{
+        "agentAliasId":{
+          "shape":"AgentAliasId",
+          "documentation":"<p>The unique identifier of the alias.</p>",
+          "location":"uri",
+          "locationName":"agentAliasId"
+        },
+        "agentAliasName":{
+          "shape":"Name",
+          "documentation":"<p>Specifies a new name for the alias.</p>"
+        },
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>Specifies a new description for the alias.</p>"
+        },
+        "routingConfiguration":{
+          "shape":"AgentAliasRoutingConfiguration",
+          "documentation":"<p>Contains details about the routing configuration of the alias.</p>"
+        }
+      }
+    },
+    "UpdateAgentAliasResponse":{
+      "type":"structure",
+      "required":["agentAlias"],
+      "members":{
+        "agentAlias":{
+          "shape":"AgentAlias",
+          "documentation":"<p>Contains details about the alias that was updated.</p>"
+        }
+      }
+    },
+    "UpdateAgentKnowledgeBaseRequest":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "agentVersion",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent associated with the knowledge base that you want to update.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "agentVersion":{
+          "shape":"DraftVersion",
+          "documentation":"<p>The version of the agent associated with the knowledge base that you want to update.</p>",
+          "location":"uri",
+          "locationName":"agentVersion"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>Specifies a new description for the knowledge base associated with an agent.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base that has been associated with an agent.</p>",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        },
+        "knowledgeBaseState":{
+          "shape":"KnowledgeBaseState",
+          "documentation":"<p>Specifies whether the agent uses the knowledge base or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>"
+        }
+      }
+    },
+    "UpdateAgentKnowledgeBaseResponse":{
+      "type":"structure",
+      "required":["agentKnowledgeBase"],
+      "members":{
+        "agentKnowledgeBase":{
+          "shape":"AgentKnowledgeBase",
+          "documentation":"<p>Contains details about the knowledge base that has been associated with an agent.</p>"
+        }
+      }
+    },
+    "UpdateAgentRequest":{
+      "type":"structure",
+      "required":[
+        "agentId",
+        "agentName",
+        "agentResourceRoleArn",
+        "foundationModel"
+      ],
+      "members":{
+        "agentId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the agent.</p>",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "agentName":{
+          "shape":"Name",
+          "documentation":"<p>Specifies a new name for the agent.</p>"
+        },
+        "agentResourceRoleArn":{
+          "shape":"AgentRoleArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the IAM role with permissions to invoke API operations on the agent.</p>"
+        },
+        "customerEncryptionKeyArn":{
+          "shape":"KmsKeyArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the KMS key with which to encrypt the agent.</p>"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>Specifies a new description of the agent.</p>"
+        },
+        "foundationModel":{
+          "shape":"ModelIdentifier",
+          "documentation":"<p>Specifies a new foundation model to be used for orchestration by the agent.</p>"
+        },
+        "idleSessionTTLInSeconds":{
+          "shape":"SessionTTL",
+          "documentation":"<p>The number of seconds for which Amazon Bedrock keeps information about a user's conversation with the agent.</p> <p>A user interaction remains active for the amount of time specified. If no conversation occurs during this time, the session expires and Amazon Bedrock deletes any data provided before the timeout.</p>"
+        },
+        "instruction":{
+          "shape":"Instruction",
+          "documentation":"<p>Specifies new instructions that tell the agent what it should do and how it should interact with users.</p>"
+        },
+        "promptOverrideConfiguration":{
+          "shape":"PromptOverrideConfiguration",
+          "documentation":"<p>Contains configurations to override prompts in different parts of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>"
+        }
+      }
+    },
+    "UpdateAgentResponse":{
+      "type":"structure",
+      "required":["agent"],
+      "members":{
+        "agent":{
+          "shape":"Agent",
+          "documentation":"<p>Contains details about the agent that was updated.</p>"
+        }
+      }
+    },
+    "UpdateDataSourceRequest":{
+      "type":"structure",
+      "required":[
+        "dataSourceConfiguration",
+        "dataSourceId",
+        "knowledgeBaseId",
+        "name"
+      ],
+      "members":{
+        "dataDeletionPolicy":{
+          "shape":"DataDeletionPolicy",
+          "documentation":"<p>The data deletion policy of the updated data source.</p>"
+        },
+        "dataSourceConfiguration":{
+          "shape":"DataSourceConfiguration",
+          "documentation":"<p>Contains details about the storage configuration of the data source.</p>"
+        },
+        "dataSourceId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the data source.</p>",
+          "location":"uri",
+          "locationName":"dataSourceId"
+        },
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>Specifies a new description for the data source.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base to which the data source belongs.</p>",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        },
+        "name":{
+          "shape":"Name",
+          "documentation":"<p>Specifies a new name for the data source.</p>"
+        },
+        "serverSideEncryptionConfiguration":{
+          "shape":"ServerSideEncryptionConfiguration",
+          "documentation":"<p>Contains details about server-side encryption of the data source.</p>"
+        },
+        "vectorIngestionConfiguration":{
+          "shape":"VectorIngestionConfiguration",
+          "documentation":"<p>Contains details about how to ingest the documents in the data source.</p>"
+        }
+      }
+    },
+    "UpdateDataSourceResponse":{
+      "type":"structure",
+      "required":["dataSource"],
+      "members":{
+        "dataSource":{
+          "shape":"DataSource",
+          "documentation":"<p>Contains details about the data source.</p>"
+        }
+      }
+    },
+    "UpdateKnowledgeBaseRequest":{
+      "type":"structure",
+      "required":[
+        "knowledgeBaseConfiguration",
+        "knowledgeBaseId",
+        "name",
+        "roleArn",
+        "storageConfiguration"
+      ],
+      "members":{
+        "description":{
+          "shape":"Description",
+          "documentation":"<p>Specifies a new description for the knowledge base.</p>"
+        },
+        "knowledgeBaseConfiguration":{
+          "shape":"KnowledgeBaseConfiguration",
+          "documentation":"<p>Specifies the configuration for the embeddings model used for the knowledge base. You must use the same configuration as when the knowledge base was created.</p>"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "documentation":"<p>The unique identifier of the knowledge base to update.</p>",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        },
+        "name":{
+          "shape":"Name",
+          "documentation":"<p>Specifies a new name for the knowledge base.</p>"
+        },
+        "roleArn":{
+          "shape":"KnowledgeBaseRoleArn",
+          "documentation":"<p>Specifies a different Amazon Resource Name (ARN) of the IAM role with permissions to invoke API operations on the knowledge base.</p>"
+        },
+        "storageConfiguration":{
+          "shape":"StorageConfiguration",
+          "documentation":"<p>Specifies the configuration for the vector store used for the knowledge base. You must use the same configuration as when the knowledge base was created.</p>"
+        }
+      }
+    },
+    "UpdateKnowledgeBaseResponse":{
+      "type":"structure",
+      "required":["knowledgeBase"],
+      "members":{
+        "knowledgeBase":{
+          "shape":"KnowledgeBase",
+          "documentation":"<p>Contains details about the knowledge base.</p>"
+        }
+      }
+    },
+    "ValidationException":{
+      "type":"structure",
+      "members":{
+        "fieldList":{
+          "shape":"ValidationExceptionFieldList",
+          "documentation":"<p>A list of objects containing fields that caused validation errors and their corresponding validation error messages.</p>"
+        },
+        "message":{"shape":"NonBlankString"}
+      },
+      "documentation":"<p>Input validation failed. Check your request parameters and retry the request.</p>",
+      "error":{
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ValidationExceptionField":{
+      "type":"structure",
+      "required":[
+        "message",
+        "name"
+      ],
+      "members":{
+        "message":{
+          "shape":"NonBlankString",
+          "documentation":"<p>A message describing why this field failed validation.</p>"
+        },
+        "name":{
+          "shape":"NonBlankString",
+          "documentation":"<p>The name of the field.</p>"
+        }
+      },
+      "documentation":"<p>Stores information about a field passed inside a request that resulted in an validation error.</p>"
+    },
+    "ValidationExceptionFieldList":{
+      "type":"list",
+      "member":{"shape":"ValidationExceptionField"}
+    },
+    "VectorIngestionConfiguration":{
+      "type":"structure",
+      "members":{
+        "chunkingConfiguration":{
+          "shape":"ChunkingConfiguration",
+          "documentation":"<p>Details about how to chunk the documents in the data source. A <i>chunk</i> refers to an excerpt from a data source that is returned when the knowledge base that it belongs to is queried.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about how to ingest the documents in a data source.</p>"
+    },
+    "VectorKnowledgeBaseConfiguration":{
+      "type":"structure",
+      "required":["embeddingModelArn"],
+      "members":{
+        "embeddingModelArn":{
+          "shape":"BedrockEmbeddingModelArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the model used to create vector embeddings for the knowledge base.</p>"
+        }
+      },
+      "documentation":"<p>Contains details about the model used to create vector embeddings for the knowledge base.</p>"
+    },
+    "Version":{
+      "type":"string",
+      "max":5,
+      "min":1,
+      "pattern":"^(DRAFT|[0-9]{0,4}[1-9][0-9]{0,4})$"
+    }
+  },
+  "documentation":"<p>Describes the API operations for creating and managing Amazon Bedrock agents.</p>"
+}
