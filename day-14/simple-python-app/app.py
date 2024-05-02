@@ -33,8 +33,8 @@ def more_classes():
         print("Total Points:", total_points)
         print("Total Credits:", total_credits)
 
-        more_classes = input("Do you want to add another class? (Y/N): ")
-        if more_classes.upper() != "Y":
+        more_classes = input("Do you want to add another class? (Yes/No): ")
+        if more_classes.upper() != "Y":.
             break
 
     gpa = total_points / total_credits if total_credits > 0 else 0
