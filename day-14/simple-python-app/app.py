@@ -6,7 +6,7 @@ def more_classes():
         credits = int(input("Enter number of credits: "))
         print("No. of credits are:", credits)
 
-        grade = input("Enter grade: ").upper()
+        grade = input("Enter a expected grade: ").upper()
         print("Grade is:", grade)
 
         grade_value = 0
