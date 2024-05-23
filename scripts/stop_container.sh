@@ -1,6 +1,7 @@
-#!/bin/bash
-set -e
-
-# Stop the running container (if any)
-containerid= `docker ps | awk -F " " '{print$1}'`
-docker rm -f $containerid
+#!/bin/sh
+ids=$(docker ps -a -q)
+for id in $ids
+do
+  echo "$id"
+  docker stop $id && docker rm $id
+done
