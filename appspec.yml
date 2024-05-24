@@ -5,8 +5,8 @@ hooks:
   ApplicationStop:
     - location: scripts/stop_container.sh
       timeout: 300
-      runas: root
+      runas: ubuntu
   AfterInstall:
     - location: scripts/start_container.sh
       timeout: 300
-      runas: root
+      runas: ubuntu
