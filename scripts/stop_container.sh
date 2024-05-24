@@ -1,4 +1,7 @@
 #!/bin/sh
-echo "deleting the running container"
-docker stop $(docker ps -a -q)
-docker rm $(docker ps -a -q)
+ids=$(docker ps -a -q)
+for id in $ids
+do
+  echo "$id"
+  docker stop $id && docker rm $id
+done
