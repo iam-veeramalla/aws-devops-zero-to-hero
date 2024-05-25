@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 ids=$(docker ps -a -q)
 for id in $ids
 do
