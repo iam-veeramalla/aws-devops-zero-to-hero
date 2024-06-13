@@ -1,0 +1,15 @@
+aws s3 rb s3://bucket-name –force  -- to remove the bucket from s3
+aws s3 cp MyFolder s3://bucket-name — recursive [–region us-west-2] -- Recursively copy a directory and its subfolders from the PC to Amazon S3
+aws ec2 describe-images | grep ubuntu -- this will dispaly all the available ami ( here it is specifically mentioned ubuntu )
+aws iam list-users –output table -- list out the iam users in a table format
+aws s3api list-objects --bucket BUCKETNAME --output json --query "[sum(Contents[].Size), length(Contents[])]" -- It will list out the size of the objects and also the contents of the bucket
+aws s3 sync s3://oldbucket s3://newbucket --source-region us-west-1 --region us-west-2 -- move the bucket to a different region
+aws iam list-users –output json | jq -r .Users[].Arn -- list out the users by arn ( ps: jq is tool similar to sed, which can be used to filter out the things )
+aws ec2 describe-instances --filters Name=instance-state-name,Values=stopped --region eu-west-1 --output json -- list out all the instances that are stopped. ( also can be used to list out instances in other states as well)
+aws cloudformation validate-template --region eu-west-1 --template-url https://s3-eu-west-1.amazonaws.com/ca/ca.cftemplate - to validate a CFT template before launching the template
+
+
+
+
+
+Source: Cloud academy
