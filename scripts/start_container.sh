@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-
+sudo su -
 # Pull the Docker image from Docker Hub
 docker pull srihari0829/simple-python-flask-app
 
