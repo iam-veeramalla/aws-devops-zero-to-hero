@@ -21,5 +21,3 @@ EXPOSE 5000
 
 # Run the Flask application
 CMD ["python", "app.py"]
-
-
