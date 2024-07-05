@@ -1,6 +1,6 @@
 ##  AWS Continuous Integration Demo
 
-## Set Up GitHub Repository
+## Set Up GitHub Repository 
 
 The first step in our CI journey is to set up a GitHub repository to store our Python application's source code. If you already have a repository, feel free to skip this step. Otherwise, let's create a new repository on GitHub by following these steps:
 
