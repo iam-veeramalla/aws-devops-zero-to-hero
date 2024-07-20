@@ -76,7 +76,7 @@ resource "aws_s3_bucket" "example" {
 
 
 resource "aws_instance" "webserver1" {
-  ami                    = "ami-0261755bbcb8c4a84"
+  ami                    = "ami-09b459d1498a0c8e2"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.webSg.id]
   subnet_id              = aws_subnet.sub1.id
@@ -84,7 +84,7 @@ resource "aws_instance" "webserver1" {
 }
 
 resource "aws_instance" "webserver2" {
-  ami                    = "ami-0261755bbcb8c4a84"
+  ami                    = "ami-09b459d1498a0c8e2"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.webSg.id]
   subnet_id              = aws_subnet.sub2.id
