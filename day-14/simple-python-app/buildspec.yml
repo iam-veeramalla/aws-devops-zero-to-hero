@@ -2,8 +2,8 @@ version: 0.2
 
 env:
   parameter-store:
-    DOCKER_REGISTRY_USERNAME: /myapp/docker-credentials/username
-    DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password
+    DOCKER_REGISTRY_USERNAME: /myapp/docker-cerdentials/username
+    DOCKER_REGISTRY_PASSWORD: /myapp/docker-cerdentials/password
     DOCKER_REGISTRY_URL: /myapp/docker-registry/url
 phases:
   install:
