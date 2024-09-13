@@ -59,6 +59,9 @@ VPC Flow Logs
 VPN connections
 
     Connect your VPCs to your on-premises networks using AWS Virtual Private Network (AWS VPN).
+CIDR
+
+    CIDR stands for Classless Inter-Domain Routing. It is a method for allocating IP addresses and for IP routing. For example The total no. of IPs for this CIDR (10.0.0.0/24) is 32–24=8 and 2⁸ = 256.
 
 
 ## Resources 
