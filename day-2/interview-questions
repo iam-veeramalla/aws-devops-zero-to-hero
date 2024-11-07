@@ -19,3 +19,11 @@ A: The principle of least privilege states that users should be granted only the
 Q: What is an AWS managed policy?
 
 A: An AWS managed policy is a predefined policy created and managed by AWS. These policies cover common use cases and provide predefined permissions for specific AWS services or actions. AWS managed policies are maintained and updated by AWS, ensuring they stay up to date with new AWS services and features. They can be attached to IAM users, groups, or roles in your AWS account.
+
+Q: what is an inline policy?
+
+An inline policy is a policy created for a single IAM identity (a user, user group, or role). Inline policies maintain a strict one-to-one relationship between a policy and an identity.
+
+Q:what is customer managed policies?
+
+ans: You create these customer managed policies for your specific use cases, and you can change and update them as often as you like.
