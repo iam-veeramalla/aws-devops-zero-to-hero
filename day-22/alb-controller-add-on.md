@@ -58,5 +58,35 @@ Verify that the deployments are running.
 kubectl get deployment -n kube-system aws-load-balancer-controller
 ```
 
+You might face the issue, unable to see the loadbalancer address while giving k get ing -n robot-shop at the end. To avoid this your **AWSLoadBalancerControllerIAMPolicy** should have the required permissions for elasticloadbalancing:DescribeListenerAttributes.
 
+## Run the following command to retrieve the policy details and look for **elasticloadbalancing:DescribeListenerAttributes** in the policy document.
+```
+aws iam get-policy-version \
+    --policy-arn arn:aws:iam::<your-aws-account-id>:policy/AWSLoadBalancerControllerIAMPolicy \
+    --version-id $(aws iam get-policy --policy-arn arn:aws:iam::<your-aws-account-id>:policy/AWSLoadBalancerControllerIAMPolicy --query 'Policy.DefaultVersionId' --output text)
+```
 
+If the required permission is missing, update the policy to include it
+## Download the current policy
+```
+aws iam get-policy-version \
+    --policy-arn arn:aws:iam::<your-aws-account-id>:policy/AWSLoadBalancerControllerIAMPolicy \
+    --version-id $(aws iam get-policy --policy-arn arn:aws:iam::<your-aws-account-id>:policy/AWSLoadBalancerControllerIAMPolicy --query 'Policy.DefaultVersionId' --output text) \
+    --query 'PolicyVersion.Document' --output json > policy.json
+```
+## Edit policy.json to add the missing permissions
+```
+{
+  "Effect": "Allow",
+  "Action": "elasticloadbalancing:DescribeListenerAttributes",
+  "Resource": "*"
+}
+```
+## Create a new policy version
+```
+aws iam create-policy-version \
+    --policy-arn arn:aws:iam::<your-aws-account-id>:policy/AWSLoadBalancerControllerIAMPolicy \
+    --policy-document file://policy.json \
+    --set-as-default
+```
