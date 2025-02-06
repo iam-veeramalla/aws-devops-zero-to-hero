@@ -2,9 +2,9 @@ version: 0.2
 
 env:
   parameter-store:
-    DOCKER_REGISTRY_USERNAME: /myapp/docker-credentials/username
-    DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password
-    DOCKER_REGISTRY_URL: /myapp/docker-registry/url
+    DOCKER_REGISTRY_USERNAME: /myapp/docker-credential/username
+    DOCKER_REGISTRY_PASSWORD: /myapp/docker-credential/password
+    DOCKER_REGISTRY_URL: /myapp/docker-credential/url
 phases:
   install:
     runtime-versions:
@@ -12,11 +12,11 @@ phases:
   pre_build:
     commands:
       - echo "Installing dependencies..."
-      - pip install -r day-13/simple-python-app/requirements.txt
+      - pip install -r day-14/simple-python-app/requirements.txt
   build:
     commands:
       - echo "Running tests..."
-      - cd day-13/simple-python-app/
+      - cd day-14/simple-python-app/
       - echo "Building Docker image..."
       - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"
       - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest" .
@@ -27,5 +27,5 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: ../simple-python-app
+  base-directory: day-14/simple-python-app
 
