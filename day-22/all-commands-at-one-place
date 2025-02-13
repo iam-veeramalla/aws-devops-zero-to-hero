@@ -1,0 +1,81 @@
+Install kubectl, eksctl, aws cli and configure the aws cli
+
+Note: If you want to choose your desired region instead of ap-south-1
+
+STEP1: Create cluster
+
+eksctl create cluster \
+--name demo-cluster-1 \
+--region ap-south-1 \
+--fargate
+
+STEP2: download kubeconfig
+
+aws eks update-kubeconfig --name demo-cluster-1 --region ap-south-1
+
+STEP3: cretae fargate profile
+
+eksctl create fargateprofile \
+--cluster demo-cluster-1 \
+--region ap-south-1 \
+--name alb-sample-app \
+--namespace game-2048
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/examples/2048/2048_full.yaml
+kubectl get pods -n game-2048
+kubectl get pods -n game-2048 -w
+kubectl get deploy -n game-2048
+kubectl get svc -n game-2048
+kubectl get ingress -n game-2048
+
+STEP4: create iam oidc
+
+eksctl utils associate-iam-oidc-provider --region ap-south-1 --cluster demo-cluster-1 --approve
+
+#######create iam policy
+
+curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.11.0/docs/install/iam_policy.json
+
+aws iam create-policy \
+--policy-name AWSLoadBalancerControllerIAMPolicy \
+--policy-document file://iam_policy.json \
+--region ap-south-1
+
+#######create service account
+
+eksctl create iamserviceaccount \
+--region ap-south-1 \
+--cluster=demo-cluster-1 \
+--namespace=kube-system \
+--name=aws-load-balancer-controller \
+--role-name AmazonEKSLoadBalancerControllerRole \
+--attach-policy-arn=arn:aws:iam::<your-aws-account-id>:policy/AWSLoadBalancerControllerIAMPolicy \
+--approve
+
+STEP5: create ALB controller
+
+helm repo add eks https://aws.github.io/eks-charts
+helm repo update eks
+
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
+-n kube-system \
+--set clusterName=demo-cluster-1 \
+--set serviceAccount.create=false \
+--set serviceAccount.name=aws-load-balancer-controller \
+--set region=ap-south-1 \
+--set vpcId=<your-vpc-id>
+
+kubectl get deployment -n kube-system aws-load-balancer-controller
+kubectl get pods -n kube-system
+kubectl get deploy -n kube-system
+kubectl get svc -n kube-system
+kubectl get ingress -n game-2048
+
+STEP6:****************************************DELETE EKS CLUSTER*********************
+
+eksctl delete cluster --name demo-cluster-1 --region ap-south-1
+
+Note: In my case while deleting cluster. Load Balancer and Ingress resource not get deleted and it prevents cluster deletion.
+      Then i deleted manually Load balancer and Ingress resource
+      then i proceed with above delete command 
+      finally successfully deleted EKS cluster
