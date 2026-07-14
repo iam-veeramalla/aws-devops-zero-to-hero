@@ -76,19 +76,19 @@ resource "aws_s3_bucket" "example" {
 
 
 resource "aws_instance" "webserver1" {
-  ami                    = "ami-0261755bbcb8c4a84"
-  instance_type          = "t2.micro"
+  ami                    = "ami-0b6d9d3d33ba97d99"
+  instance_type          = "t3.micro"
   vpc_security_group_ids = [aws_security_group.webSg.id]
   subnet_id              = aws_subnet.sub1.id
-  user_data              = base64encode(file("userdata.sh"))
+  user_data_base64       = base64encode(file("userdata.sh"))
 }
 
 resource "aws_instance" "webserver2" {
-  ami                    = "ami-0261755bbcb8c4a84"
-  instance_type          = "t2.micro"
+  ami                    = "ami-0b6d9d3d33ba97d99"
+  instance_type          = "t3.micro"
   vpc_security_group_ids = [aws_security_group.webSg.id]
   subnet_id              = aws_subnet.sub2.id
-  user_data              = base64encode(file("userdata1.sh"))
+  user_data_base64       = base64encode(file("userdata1.sh"))
 }
 
 #create alb
