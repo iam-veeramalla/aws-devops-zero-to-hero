@@ -16,4 +16,5 @@ docker run -d \
   --name $CONTAINER \
   -p 5000:5000 \
   $IMAGE
+
   
