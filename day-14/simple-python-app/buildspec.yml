@@ -29,4 +29,3 @@ artifacts:
     - '**/*'
   base-directory: day-14/simple-python-app
 
-
