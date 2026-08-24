@@ -104,19 +104,68 @@ resource "aws_s3_bucket_acl" "example" {
 }
 
 resource "aws_instance" "web_server1" {
-  ami             = "ami-0f8a61b66d1accaee"
-  instance_type   = "t3.micro"
-  subnet_id       = aws_subnet.sub1.id
+  ami                    = "ami-0f8a61b66d1accaee"
+  instance_type          = "t3.micro"
+  subnet_id              = aws_subnet.sub1.id
   vpc_security_group_ids = [aws_security_group.mysg.id]
-  user_data_base64 = base64encode(file("userdata.sh"))
+  user_data_base64       = base64encode(file("userdata.sh"))
 
 }
 
 resource "aws_instance" "web_server2" {
-  ami             = "ami-0f8a61b66d1accaee"
-  instance_type   = "t3.micro"
-  subnet_id       = aws_subnet.sub2.id
+  ami                    = "ami-0f8a61b66d1accaee"
+  instance_type          = "t3.micro"
+  subnet_id              = aws_subnet.sub2.id
   vpc_security_group_ids = [aws_security_group.mysg.id]
-  user_data_base64 = base64encode(file("userdata1.sh"))
+  user_data_base64       = base64encode(file("userdata1.sh"))
+
+}
+# Create alb 
+resource "aws_alb" "main" {
+  name               = "main-alb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.mysg.id]
+  subnets            = [aws_subnet.sub1.id, aws_subnet.sub2.id]
+}
+
+resource "aws_alb_target_group" "tg" {
+  name     = "main-tg"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = aws_vpc.main.id
+
+  health_check {
+    path = "/"
+    port = "traffic-port"
+  }
+}
+
+resource "aws_alb_target_group_attachment" "attach1" {
+  target_group_arn = aws_alb_target_group.tg.arn
+  target_id        = aws_instance.web_server1.id
+  port             = 80
+}
+
+resource "aws_alb_target_group_attachment" "attach2" {
+  target_group_arn = aws_alb_target_group.tg.arn
+  target_id        = aws_instance.web_server2.id
+  port             = 80
+}
+
+resource "aws_alb_listener" "listener" {
+  load_balancer_arn = aws_alb.main.arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_alb_target_group.tg.arn
+  }
+
+}
+
+output "loadbalancerdns" {
+  value = aws_alb.main.dns_name
 
 }
