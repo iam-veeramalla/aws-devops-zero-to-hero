@@ -4,8 +4,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return 'Hello, world!'
+    return 'Hello, Samuel Matthew. God blessed you from his heart!'
 
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
 

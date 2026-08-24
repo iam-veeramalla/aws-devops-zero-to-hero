@@ -2,8 +2,13 @@
 apt update
 apt install -y apache2
 
-# Get the instance ID using the instance metadata
-INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
+TOKEN=$(curl -s -X PUT \
+  -H "X-aws-ec2-metadata-token-ttl-seconds: 21600" \
+  http://169.254.169.254/latest/api/token)
+
+INSTANCE_ID=$(curl -s \
+  -H "X-aws-ec2-metadata-token: $TOKEN" \
+  http://169.254.169.254/latest/meta-data/instance-id)
 
 # Install the AWS CLI
 apt install -y awscli
@@ -30,9 +35,9 @@ cat <<EOF > /var/www/html/index.html
   </style>
 </head>
 <body>
-  <h1>Terraform Project Server 1</h1>
+  <h1>Jesus Christ Server2</h1>
   <h2>Instance ID: <span style="color:green">$INSTANCE_ID</span></h2>
-  <p>Welcome to CloudChamp's Channel</p>
+  <p>Welcome to Holy spirit Encounter</p>
   
 </body>
 </html>
