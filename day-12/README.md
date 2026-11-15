@@ -41,3 +41,19 @@ A structured overview of AWS-managed CI/CD services, practical implementation wo
 3. **Clone Locally:** Run the clone command from your local terminal and authenticate using your IAM Git credentials:
    ```bash
    git clone https://git-codecommit.<region>[.amazonaws.com/v1/repos/](https://.amazonaws.com/v1/repos/)<repository-name>
+
+### practical demo
+
+**Create a repository on awscodecommit
+<img width="1797" height="921" alt="codecommit -1" src="https://github.com/user-attachments/assets/4ce5b225-d77d-45ac-9787-04b494ce06f3" />
+**
+<img width="1147" height="802" alt="codecommit-2" src="https://github.com/user-attachments/assets/31c61622-59fd-4a51-aa3e-0043e5e11efe" />
+<img width="1910" height="862" alt="codecommit-3" src="https://github.com/user-attachments/assets/4ff5e79f-afcd-44ed-a3dd-b1dfd00e9786" />
+<img width="1907" height="867" alt="codecommit-4" src="https://github.com/user-attachments/assets/8e97eb97-1d60-4013-a59b-82a8c25159be" />
+<img width="1322" height="587" alt="codecommit-5" src="https://github.com/user-attachments/assets/e1313ca0-591a-4bb0-9ea8-25f1f6309899" />
+<img width="1912" height="862" alt="codecommit-6" src="https://github.com/user-attachments/assets/a0119196-4bfb-41fa-a2f8-691ccb4a0666" />
+
+
+
+
+
